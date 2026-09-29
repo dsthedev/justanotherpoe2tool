@@ -237,6 +237,35 @@
                 }
             }
 
+            function renderScrollBar() {
+                const profile = activeProfile();
+
+                $("scrollCharacter").textContent =
+                    profile?.name || "No character";
+
+                const completed = Math.min(
+                    profile?.currentTask || 0,
+                    tasks.length
+                );
+
+                const percent = tasks.length
+                    ? Math.round(completed / tasks.length * 100)
+                    : 0;
+
+                $("scrollProgress").textContent =
+                    `${completed} / ${tasks.length}`;
+
+                $("scrollProgressFill").style.width =
+                    `${percent}%`;
+            }
+
+            function updateScrollBar() {
+                $("scrollBar").classList.toggle(
+                    "visible",
+                    window.scrollY > 140
+                );
+            }
+
             function addProfile() {
                 const input = $("profileName");
                 const name = input.value.trim();
@@ -999,6 +1028,7 @@
                 refreshTasks();
                 renderProfiles();
                 renderProgress();
+                renderScrollBar();
                 renderCampaign();
             }
 
@@ -1163,6 +1193,13 @@
                         loadJsonFile(file);
                     }
                 });
+
+            window.addEventListener("scroll", updateScrollBar, {
+                passive: true
+            });
+
+            $("scrollTocButton")
+                .addEventListener("click", openSheet);
 
             render();
             loadCampaign();

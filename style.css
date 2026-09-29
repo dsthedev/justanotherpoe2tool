@@ -70,11 +70,60 @@ button {
 }
 
 .header {
-    position: sticky;
-    top: 0;
-    z-index: 10;
     padding: 4px 0 10px;
-    background: linear-gradient(var(--bg) 84%, transparent)
+}
+
+.scroll-bar {
+    position: fixed;
+    top: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(720px, calc(100% - 20px));
+    z-index: 15;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 7px 9px;
+
+    background: rgba(23, 25, 30, .96);
+    border: 1px solid var(--border);
+    border-top: 0;
+    border-radius: 0 0 7px 7px;
+
+    transition: top .15s ease;
+}
+
+.scroll-bar.visible {
+    top: 0;
+}
+
+.scroll-bar strong {
+    white-space: nowrap;
+}
+
+.scroll-progress {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    flex: 1;
+    min-width: 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.scroll-progress .progress-bar {
+    flex: 1;
+    margin: 0;
+}
+
+.scroll-bar .btn {
+    flex-shrink: 0;
+}
+
+.header-main {
+    padding-bottom: 6px;
 }
 
 .header-row,
@@ -100,12 +149,23 @@ h1 {
 }
 
 .profile-row {
-    margin-top: 9px
+    margin-top: 10px;
 }
 
 .profile-row select {
-    min-width: 0;
-    flex: 1
+    width: 100%;
+}
+
+.character-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.character-actions .profile-input {
+    flex: 1 1 150px;
+    min-width: 130px;
 }
 
 input,
@@ -242,6 +302,34 @@ input[type=text] {
     letter-spacing: .06em
 }
 
+.section:nth-child(7n + 1) .section-color {
+    background: #e06c75;
+}
+
+.section:nth-child(7n + 2) .section-color {
+    background: #e5a657;
+}
+
+.section:nth-child(7n + 3) .section-color {
+    background: #d8c45a;
+}
+
+.section:nth-child(7n + 4) .section-color {
+    background: #78b978;
+}
+
+.section:nth-child(7n + 5) .section-color {
+    background: #67b7d1;
+}
+
+.section:nth-child(7n + 6) .section-color {
+    background: #7895d1;
+}
+
+.section:nth-child(7n + 7) .section-color {
+    background: #a27ac4;
+}
+
 .task {
     padding: 9px 10px;
     border-bottom: 1px solid #20232a
@@ -293,7 +381,7 @@ input[type=text] {
 .task-note {
     display: block;
     width: calc(100% - 25px);
-    min-height: 123px;
+    min-height: 96px;
     margin: 8px 0 0 25px;
     padding: 8px;
     resize: vertical
@@ -349,6 +437,10 @@ input[type=text] {
     display: flex;
     gap: 6px;
     margin: 9px 0 0 25px
+}
+
+.task-actions .btn {
+    padding: 1rem 2rem;
 }
 
 .next-btn {
@@ -448,6 +540,54 @@ input[type=text] {
 .toc-task.current {
     color: var(--text);
     background: var(--panel-hover)
+}
+
+.task.current {
+    position: relative;
+    background: #1e232b;
+    border-left: 3px solid var(--accent);
+    padding-left: 7px;
+    box-shadow: inset 0 0 0 1px #343a45;
+}
+
+.task.current .task-text {
+    color: var(--text);
+}
+
+.task.current .current-label {
+    color: var(--accent);
+}
+
+.task.current .task-heading {
+    font-weight: 500;
+}
+
+.section:nth-child(7n + 1) .task.current {
+    border-left-color: #e06c75;
+}
+
+.section:nth-child(7n + 2) .task.current {
+    border-left-color: #e5a657;
+}
+
+.section:nth-child(7n + 3) .task.current {
+    border-left-color: #d8c45a;
+}
+
+.section:nth-child(7n + 4) .task.current {
+    border-left-color: #78b978;
+}
+
+.section:nth-child(7n + 5) .task.current {
+    border-left-color: #67b7d1;
+}
+
+.section:nth-child(7n + 6) .task.current {
+    border-left-color: #7895d1;
+}
+
+.section:nth-child(7n + 7) .task.current {
+    border-left-color: #a27ac4;
 }
 
 .toc-check {
