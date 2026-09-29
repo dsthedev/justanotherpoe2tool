@@ -1,325 +1,325 @@
 {
-  "sections": [
-    {
-      "section": "Target Farming",
-      "entries": [
+    "sections": [
         {
-          "title": "Fortress",
-          "items": [
-            "Atlas passive points that buff all maps with essences, wisps, strongboxes, shrines, rogue exiles, +2 mods on tablets, and more.",
-            "+1 permanent level from Martyr.",
-            "Tip: Explore for Matriarch and Patriarch halls later (red beams in the fog) to mass complete the fortress.",
-            "Tip: +waystone chance makes you drop two fragments."
-          ]
+            "section": "Target Farming",
+            "entries": [
+                {
+                    "title": "Fortress",
+                    "items": [
+                        "Atlas passive points that buff all maps with essences, wisps, strongboxes, shrines, rogue exiles, +2 mods on tablets, and more.",
+                        "+1 permanent level from Martyr.",
+                        "Tip: Explore for Matriarch and Patriarch halls later (red beams in the fog) to mass complete the fortress.",
+                        "Tip: +waystone chance makes you drop two fragments."
+                    ]
+                },
+                {
+                    "title": "Precursor Towers",
+                    "items": [
+                        "Early Irradiated tablets.",
+                        "Exploration range.",
+                        "Tip: To explore 70% more area with each tower, grab the Atlas passive that increases tower exploration radius by 30%."
+                    ]
+                },
+                {
+                    "title": "Abyss",
+                    "items": [
+                        "Abyss crafting currency such as Preserved Rib.",
+                        "General currency.",
+                        "Kulemak Invitations to farm Ancient Bones. Each Kulemak kill guarantees one.",
+                        "Undying Hate unique jewel from Kulemak."
+                    ]
+                },
+                {
+                    "title": "Ritual",
+                    "items": [
+                        "Specific unique items you want.",
+                        "Omens.",
+                        "Ritual-only idols.",
+                        "From Nothing unique jewel."
+                    ]
+                },
+                {
+                    "title": "Breach",
+                    "items": [
+                        "General currency.",
+                        "Amulets, rings and belts with minion mods.",
+                        "Amulets, rings and belts with caster mods.",
+                        "Catalysts for ring and amulet quality.",
+                        "Wombgifts.",
+                        "Breach rings.",
+                        "Absent Amulet — unique amulet bases that reserve a random spirit skill while costing no spirit.",
+                        "Altered Collarbone — adds otherworldly breach mods to an item without needing to craft it from the Genesis Tree.",
+                        "Controlled Metamorphosis unique jewel."
+                    ]
+                },
+                {
+                    "title": "Temple",
+                    "items": [
+                        "General currency.",
+                        "Vaal currency and Vaal Orbs.",
+                        "Irradiated tablets and Ancient Infusers.",
+                        "Atziri special supports.",
+                        "Double corruption.",
+                        "Ancient Soul Cores from the core destabilizer room.",
+                        "Mechanical Limbs — lost on death.",
+                        "Lineage support gems."
+                    ]
+                },
+                {
+                    "title": "Delirium",
+                    "items": [
+                        "Amulet instilling.",
+                        "Emotion crafting for jewels.",
+                        "Twisted Amulet — double-instilled amulets.",
+                        "Grand Mirror map juicing.",
+                        "Effect of Prefix or Suffix crafted modifiers on a jewel.",
+                        "Very Large Radius crafted modifier on a Time-lost jewel.",
+                        "Raven-Touched Shard to instill a notable to your helm slot.",
+                        "Megalomaniac and Voices unique jewels from Simulacrum."
+                    ]
+                },
+                {
+                    "title": "Expedition",
+                    "items": [
+                        "Ezomyte Runes.",
+                        "Runic Alloys.",
+                        "Blazing Fluxes for resistance swapping on gear.",
+                        "Masterwork Runes for upgrading Greater Runes to Perfect Runes.",
+                        "Expedition Logbooks.",
+                        "Medved's Sagas.",
+                        "Runic Ward skill gems.",
+                        "Exceptional item bases.",
+                        "Greater Exalted Orbs.",
+                        "Secret wand quest.",
+                        "Generic currency.",
+                        "+1 permanent passive or +10 permanent Spirit unlock — very rare.",
+                        "Heroic Tragedy unique jewel."
+                    ]
+                },
+                {
+                    "title": "Trial of the Sekhemas",
+                    "items": [
+                        "Ascendancy.",
+                        "Sapphire jewels.",
+                        "Time-lost jewels.",
+                        "Against the Darkness unique jewel.",
+                        "Tip: One jewel of each color can be combined into a Diamond, including Time-lost Diamonds. This consumes Exalts."
+                    ]
+                },
+                {
+                    "title": "Trial of Chaos",
+                    "items": [
+                        "Ascendancy.",
+                        "Chaos Orbs.",
+                        "Soul Cores.",
+                        "The Adorned unique jewel — 2% chance."
+                    ]
+                },
+                {
+                    "title": "Wisps",
+                    "items": [
+                        "Bear Idols.",
+                        "Rite of Passage unique charm."
+                    ]
+                },
+                {
+                    "title": "Rogue Exiles",
+                    "items": [
+                        "Tons of rings, amulets and belts.",
+                        "Specific DEX / STR / INT gear.",
+                        "Heart of the Well from Abyss-influenced rogue exile drops."
+                    ]
+                },
+                {
+                    "title": "Shrines",
+                    "items": [
+                        "Extra mapping speed and power.",
+                        "ilvl 82 rare loot explosions from the 'bosses get buffed by shrine instead' Atlas node.",
+                        "Enlightened shrine — jewel explosion, no equipment.",
+                        "Shock shrine — Lightning-tag loot explosion.",
+                        "Crit shrine — Critical-tag loot explosion.",
+                        "Other shrine types can produce corresponding tag-based loot explosions."
+                    ]
+                },
+                {
+                    "title": "Boss Rush Maps",
+                    "items": [
+                        "Increased tablet drops.",
+                        "Use only Irradiated Tablets, Overseer Tablets, or empty tablet slots.",
+                        "Each non-league-mechanic tablet slot increases tablet drop chance from random content appearing in the map.",
+                        "Filling all three slots with the same league mechanic causes only that mechanic to appear and results in fewer tablets of that type."
+                    ]
+                },
+                {
+                    "title": "Unique Maps",
+                    "items": [
+                        "Untainted Paradise — XP.",
+                        "Mirror Lake — -1 prefix / +1 suffix amulet and ring bases.",
+                        "Anomaly maps — rare Lineage support gems."
+                    ]
+                },
+                {
+                    "title": "Cleansed Maps",
+                    "items": [
+                        "Fracturing Orbs.",
+                        "Tip: Summoning Circles also help obtain Fracturing Orbs. Use tablets with extra Summoning Circles."
+                    ]
+                },
+                {
+                    "title": "Specific Biomes",
+                    "items": [
+                        "Cities — juiced 4-tablet maps.",
+                        "Forest — Lineage supports.",
+                        "Swamp — target farm Chaos / Exalts.",
+                        "Desert — target farm Regals / Alchs.",
+                        "Mountain — target farm tablets / runes.",
+                        "Grass — target farm Perfect currencies.",
+                        "Water — currency."
+                    ]
+                },
+                {
+                    "title": "Jado's Spycraft",
+                    "items": [
+                        "More exceptional items and unique strongboxes.",
+                        "More Lineage skill gems.",
+                        "Buffing multiple tablets of the same kind."
+                    ]
+                },
+                {
+                    "title": "Doryani's Science",
+                    "items": [
+                        "More revives and juice.",
+                        "Chance to shortcut via exploration.",
+                        "Chance to find citadels and teleport to them.",
+                        "Terraforming maps to a specific biome."
+                    ]
+                },
+                {
+                    "title": "Hilda's Hunting",
+                    "items": [
+                        "More rares and uniques.",
+                        "More tablet effects for each different tablet.",
+                        "Bossing boosts."
+                    ]
+                },
+                {
+                    "title": "Gold",
+                    "items": [
+                        "+3 amulets by gambling amulets at the Ange NPC."
+                    ]
+                }
+            ]
         },
         {
-          "title": "Precursor Towers",
-          "items": [
-            "Early Irradiated tablets.",
-            "Exploration range.",
-            "Tip: To explore 70% more area with each tower, grab the Atlas passive that increases tower exploration radius by 30%."
-          ]
+            "section": "Campaign",
+            "entries": [
+                {
+                    "title": "Attack Skills",
+                    "items": [
+                        "Make sure your weapon is as good as it can be."
+                    ]
+                },
+                {
+                    "title": "Spell Skills",
+                    "items": [
+                        "Prioritize +spell levels."
+                    ]
+                },
+                {
+                    "title": "Early Crafting",
+                    "items": [
+                        "Feel free to spend crafting currencies to become powerful early on."
+                    ]
+                },
+                {
+                    "title": "Check Vendors",
+                    "items": [
+                        "Check vendors each level-up for good items.",
+                        "+movement speed on boots.",
+                        "+skill levels and other useful upgrades."
+                    ]
+                },
+                {
+                    "title": "Resistances",
+                    "items": [
+                        "Try to achieve resistance values similar to your level.",
+                        "Example: at level 30, aim for roughly 30% all resistance.",
+                        "Act 1 — prioritize Cold resistance.",
+                        "Act 2 — prioritize Lightning resistance for the final boss fights."
+                    ]
+                },
+                {
+                    "title": "Dying",
+                    "items": [
+                        "Equip gear with +Life.",
+                        "Invest in additional defensive layers."
+                    ]
+                },
+                {
+                    "title": "Ascendancy",
+                    "items": [
+                        "If you don't immediately need your Ascendancy, you can skip it for a few levels and return when stronger."
+                    ]
+                },
+                {
+                    "title": "Permanent Campaign Power",
+                    "items": [
+                        "Try to collect all campaign permanent power boosts."
+                    ]
+                }
+            ]
         },
         {
-          "title": "Abyss",
-          "items": [
-            "Abyss crafting currency such as Preserved Rib.",
-            "General currency.",
-            "Kulemak Invitations to farm Ancient Bones. Each Kulemak kill guarantees one.",
-            "Undying Hate unique jewel from Kulemak."
-          ]
-        },
-        {
-          "title": "Ritual",
-          "items": [
-            "Specific unique items you want.",
-            "Omens.",
-            "Ritual-only idols.",
-            "From Nothing unique jewel."
-          ]
-        },
-        {
-          "title": "Breach",
-          "items": [
-            "General currency.",
-            "Amulets, rings and belts with minion mods.",
-            "Amulets, rings and belts with caster mods.",
-            "Catalysts for ring and amulet quality.",
-            "Wombgifts.",
-            "Breach rings.",
-            "Absent Amulet — unique amulet bases that reserve a random spirit skill while costing no spirit.",
-            "Altered Collarbone — adds otherworldly breach mods to an item without needing to craft it from the Genesis Tree.",
-            "Controlled Metamorphosis unique jewel."
-          ]
-        },
-        {
-          "title": "Temple",
-          "items": [
-            "General currency.",
-            "Vaal currency and Vaal Orbs.",
-            "Irradiated tablets and Ancient Infusers.",
-            "Atziri special supports.",
-            "Double corruption.",
-            "Ancient Soul Cores from the core destabilizer room.",
-            "Mechanical Limbs — lost on death.",
-            "Lineage support gems."
-          ]
-        },
-        {
-          "title": "Delirium",
-          "items": [
-            "Amulet instilling.",
-            "Emotion crafting for jewels.",
-            "Twisted Amulet — double-instilled amulets.",
-            "Grand Mirror map juicing.",
-            "Effect of Prefix or Suffix crafted modifiers on a jewel.",
-            "Very Large Radius crafted modifier on a Time-lost jewel.",
-            "Raven-Touched Shard to instill a notable to your helm slot.",
-            "Megalomaniac and Voices unique jewels from Simulacrum."
-          ]
-        },
-        {
-          "title": "Expedition",
-          "items": [
-            "Ezomyte Runes.",
-            "Runic Alloys.",
-            "Blazing Fluxes for resistance swapping on gear.",
-            "Masterwork Runes for upgrading Greater Runes to Perfect Runes.",
-            "Expedition Logbooks.",
-            "Medved's Sagas.",
-            "Runic Ward skill gems.",
-            "Exceptional item bases.",
-            "Greater Exalted Orbs.",
-            "Secret wand quest.",
-            "Generic currency.",
-            "+1 permanent passive or +10 permanent Spirit unlock — very rare.",
-            "Heroic Tragedy unique jewel."
-          ]
-        },
-        {
-          "title": "Trial of the Sekhemas",
-          "items": [
-            "Ascendancy.",
-            "Sapphire jewels.",
-            "Time-lost jewels.",
-            "Against the Darkness unique jewel.",
-            "Tip: One jewel of each color can be combined into a Diamond, including Time-lost Diamonds. This consumes Exalts."
-          ]
-        },
-        {
-          "title": "Trial of Chaos",
-          "items": [
-            "Ascendancy.",
-            "Chaos Orbs.",
-            "Soul Cores.",
-            "The Adorned unique jewel — 2% chance."
-          ]
-        },
-        {
-          "title": "Wisps",
-          "items": [
-            "Bear Idols.",
-            "Rite of Passage unique charm."
-          ]
-        },
-        {
-          "title": "Rogue Exiles",
-          "items": [
-            "Tons of rings, amulets and belts.",
-            "Specific DEX / STR / INT gear.",
-            "Heart of the Well from Abyss-influenced rogue exile drops."
-          ]
-        },
-        {
-          "title": "Shrines",
-          "items": [
-            "Extra mapping speed and power.",
-            "ilvl 82 rare loot explosions from the 'bosses get buffed by shrine instead' Atlas node.",
-            "Enlightened shrine — jewel explosion, no equipment.",
-            "Shock shrine — Lightning-tag loot explosion.",
-            "Crit shrine — Critical-tag loot explosion.",
-            "Other shrine types can produce corresponding tag-based loot explosions."
-          ]
-        },
-        {
-          "title": "Boss Rush Maps",
-          "items": [
-            "Increased tablet drops.",
-            "Use only Irradiated Tablets, Overseer Tablets, or empty tablet slots.",
-            "Each non-league-mechanic tablet slot increases tablet drop chance from random content appearing in the map.",
-            "Filling all three slots with the same league mechanic causes only that mechanic to appear and results in fewer tablets of that type."
-          ]
-        },
-        {
-          "title": "Unique Maps",
-          "items": [
-            "Untainted Paradise — XP.",
-            "Mirror Lake — -1 prefix / +1 suffix amulet and ring bases.",
-            "Anomaly maps — rare Lineage support gems."
-          ]
-        },
-        {
-          "title": "Cleansed Maps",
-          "items": [
-            "Fracturing Orbs.",
-            "Tip: Summoning Circles also help obtain Fracturing Orbs. Use tablets with extra Summoning Circles."
-          ]
-        },
-        {
-          "title": "Specific Biomes",
-          "items": [
-            "Cities — juiced 4-tablet maps.",
-            "Forest — Lineage supports.",
-            "Swamp — target farm Chaos / Exalts.",
-            "Desert — target farm Regals / Alchs.",
-            "Mountain — target farm tablets / runes.",
-            "Grass — target farm Perfect currencies.",
-            "Water — currency."
-          ]
-        },
-        {
-          "title": "Jado's Spycraft",
-          "items": [
-            "More exceptional items and unique strongboxes.",
-            "More Lineage skill gems.",
-            "Buffing multiple tablets of the same kind."
-          ]
-        },
-        {
-          "title": "Doryani's Science",
-          "items": [
-            "More revives and juice.",
-            "Chance to shortcut via exploration.",
-            "Chance to find citadels and teleport to them.",
-            "Terraforming maps to a specific biome."
-          ]
-        },
-        {
-          "title": "Hilda's Hunting",
-          "items": [
-            "More rares and uniques.",
-            "More tablet effects for each different tablet.",
-            "Bossing boosts."
-          ]
-        },
-        {
-          "title": "Gold",
-          "items": [
-            "+3 amulets by gambling amulets at the Ange NPC."
-          ]
+            "section": "Early Endgame",
+            "entries": [
+                {
+                    "title": "After the First Precursor Tower",
+                    "items": [
+                        "The Fortress will appear.",
+                        "Start the Fortress questline to unlock Atlas passive nodes affecting all maps."
+                    ]
+                },
+                {
+                    "title": "First Fortress Priorities",
+                    "items": [
+                        "Path toward the Atlas node that unlocks +1 tablet mod.",
+                        "There is one in the center of the tree and one at the very top; rush the first one.",
+                        "Use CTRL+F to search for early Tablet and Waystone nodes.",
+                        "Unlock 'Irradiated tablets can now drop' — they do not drop by default anymore.",
+                        "Clear a corrupted tower area to unlock Doryani as a master.",
+                        "Doryani gives +1 revive, allowing 6-mod maps with 3 tablets and double the tries."
+                    ]
+                },
+                {
+                    "title": "Stay in the Fortress",
+                    "items": [
+                        "Stay in the Fortress until you have T15 maps and roughly 50–100 Atlas points."
+                    ]
+                },
+                {
+                    "title": "Choose Your Endgame Path",
+                    "items": [
+                        "If you want a specific league mechanic, venture out and do its questline with semi-decent Atlas bonuses until you unlock most of its tree.",
+                        "If your build is strong, finish the Arbiter of Divinity questline in the Fortress for roughly +40 Atlas points.",
+                        "Then rush to the top of the Atlas tree for 4-mod tablets."
+                    ]
+                },
+                {
+                    "title": "Later Atlas Progression",
+                    "items": [
+                        "Hunt Matriarch / Patriarch citadels, shown by red beams in the fog.",
+                        "These allow you to do Arbiter of Divinity additional times for roughly +40 Atlas points per kill.",
+                        "Alternatively, finish the Atlas manually one map at a time."
+                    ]
+                },
+                {
+                    "title": "Atlas Progression Warning",
+                    "items": [
+                        "Normal mapping does NOT progress Atlas.",
+                        "Only maps within the Fortress walls progress Atlas."
+                    ]
+                }
+            ]
         }
-      ]
-    },
-    {
-      "section": "Campaign",
-      "entries": [
-        {
-          "title": "Attack Skills",
-          "items": [
-            "Make sure your weapon is as good as it can be."
-          ]
-        },
-        {
-          "title": "Spell Skills",
-          "items": [
-            "Prioritize +spell levels."
-          ]
-        },
-        {
-          "title": "Early Crafting",
-          "items": [
-            "Feel free to spend crafting currencies to become powerful early on."
-          ]
-        },
-        {
-          "title": "Check Vendors",
-          "items": [
-            "Check vendors each level-up for good items.",
-            "+movement speed on boots.",
-            "+skill levels and other useful upgrades."
-          ]
-        },
-        {
-          "title": "Resistances",
-          "items": [
-            "Try to achieve resistance values similar to your level.",
-            "Example: at level 30, aim for roughly 30% all resistance.",
-            "Act 1 — prioritize Cold resistance.",
-            "Act 2 — prioritize Lightning resistance for the final boss fights."
-          ]
-        },
-        {
-          "title": "Dying",
-          "items": [
-            "Equip gear with +Life.",
-            "Invest in additional defensive layers."
-          ]
-        },
-        {
-          "title": "Ascendancy",
-          "items": [
-            "If you don't immediately need your Ascendancy, you can skip it for a few levels and return when stronger."
-          ]
-        },
-        {
-          "title": "Permanent Campaign Power",
-          "items": [
-            "Try to collect all campaign permanent power boosts."
-          ]
-        }
-      ]
-    },
-    {
-      "section": "Early Endgame",
-      "entries": [
-        {
-          "title": "After the First Precursor Tower",
-          "items": [
-            "The Fortress will appear.",
-            "Start the Fortress questline to unlock Atlas passive nodes affecting all maps."
-          ]
-        },
-        {
-          "title": "First Fortress Priorities",
-          "items": [
-            "Path toward the Atlas node that unlocks +1 tablet mod.",
-            "There is one in the center of the tree and one at the very top; rush the first one.",
-            "Use CTRL+F to search for early Tablet and Waystone nodes.",
-            "Unlock 'Irradiated tablets can now drop' — they do not drop by default anymore.",
-            "Clear a corrupted tower area to unlock Doryani as a master.",
-            "Doryani gives +1 revive, allowing 6-mod maps with 3 tablets and double the tries."
-          ]
-        },
-        {
-          "title": "Stay in the Fortress",
-          "items": [
-            "Stay in the Fortress until you have T15 maps and roughly 50–100 Atlas points."
-          ]
-        },
-        {
-          "title": "Choose Your Endgame Path",
-          "items": [
-            "If you want a specific league mechanic, venture out and do its questline with semi-decent Atlas bonuses until you unlock most of its tree.",
-            "If your build is strong, finish the Arbiter of Divinity questline in the Fortress for roughly +40 Atlas points.",
-            "Then rush to the top of the Atlas tree for 4-mod tablets."
-          ]
-        },
-        {
-          "title": "Later Atlas Progression",
-          "items": [
-            "Hunt Matriarch / Patriarch citadels, shown by red beams in the fog.",
-            "These allow you to do Arbiter of Divinity additional times for roughly +40 Atlas points per kill.",
-            "Alternatively, finish the Atlas manually one map at a time."
-          ]
-        },
-        {
-          "title": "Atlas Progression Warning",
-          "items": [
-            "Normal mapping does NOT progress Atlas.",
-            "Only maps within the Fortress walls progress Atlas."
-          ]
-        }
-      ]
-    }
-  ]
+    ]
 }
