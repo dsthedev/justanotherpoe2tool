@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PoE2 Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <nav class="global-nav">
+            <button class="nav-btn active" data-view="rush">Rush to Maps</button>
+            <button class="nav-btn" data-view="ssf">SSF Reference</button>
+        </nav>
+
+        <section id="rush" class="view active">
+            <header class="header">
+                <div class="header-row">
+                    <div class="title">
+                        <h1>Rush to Maps</h1>
+                        <small>PoE2 campaign progress</small>
+                    </div>
+                    <button class="btn" id="tocButton">ToC</button>
+                </div>
+
+                <div class="profile-row">
+                    <select id="profileSelect"></select>
+                    <input id="profileName" class="profile-input" type="text" placeholder="New character">
+                    <button class="btn btn-primary" id="addProfile">Add</button>
+                    <button class="btn btn-danger" id="deleteProfile" title="Delete character">×</button>
+                </div>
+
+                <div class="progress">
+                    <div class="progress-meta">
+                        <span id="progressText">0 / 0</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </header>
+
+            <main id="campaign"></main>
+
+            <div class="data-options">
+                <button class="btn" id="uploadButton">Load acts.json</button>
+            </div>
+
+            <input id="jsonUpload" type="file" accept=".json,application/json" hidden>
+        </section>
+
+        <section id="ssf" class="view">
+            <header class="quick-header">
+                <h1>SSF Quick Reference</h1>
+
+                <div class="search-wrap">
+                    <input id="search" type="search" autocomplete="off" spellcheck="false"
+                        placeholder="Search SSF guide..." aria-label="Search SSF guide">
+                    <button class="clear-search" id="clearSearch" type="button">×</button>
+                </div>
+
+                <div class="search-info" id="searchInfo"></div>
+            </header>
+
+            <main id="ssfContent"></main>
+
+            <div class="empty" id="ssfEmpty">No matching entries.</div>
+        </section>
+
+    </div>
+
+    <div class="sheet-backdrop" id="sheetBackdrop"></div>
+
+    <aside class="sheet" id="sheet">
+        <div class="sheet-header">
+            <strong>Campaign</strong>
+            <button class="btn" id="closeSheet">Close</button>
+        </div>
+
+        <div class="sheet-content" id="toc"></div>
+    </aside>
+
+    <script>
+        const $ = id => document.getElementById(id);
+
+        document.querySelectorAll(".nav-btn").forEach(button => {
+            button.addEventListener("click", () => {
+                document.querySelectorAll(".nav-btn").forEach(btn => {
+                    btn.classList.toggle("active", btn === button);
+                });
+
+                document.querySelectorAll(".view").forEach(view => {
+                    view.classList.toggle("active", view.id === button.dataset.view);
+                });
+            });
+        });
+
+        const escapeHtml = value =>
+            String(value).replace(/[&<>"']/g, character => ({
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            }[character]));
+
+        /* Rush to Maps */
+        (() => {
+            const STORAGE_KEY = "poe2-rush-to-maps";
+
+            let campaignData = null;
+            let tasks = [];
+            let state = loadState();
+
+            function loadState() {
+                try {
+                    const saved = localStorage.getItem(STORAGE_KEY);
+
+                    if (saved) {
+                        const parsed = JSON.parse(saved);
+
+                        if (parsed && Array.isArray(parsed.profiles)) {
+                            return {
+                                profiles: parsed.profiles,
+                                activeProfile: Number.isInteger(parsed.activeProfile)
+                                    ? parsed.activeProfile
+                                    : 0
+                            };
+                        }
+                    }
+                } catch (error) {
+                    console.warn("Could not load saved state:", error);
+                }
+
+                return {
+                    profiles: [],
+                    activeProfile: 0
+                };
+            }
+
+            function saveState() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            }
+
+            function activeProfile() {
+                return state.profiles[state.activeProfile] || null;
+            }
+
+            function getTasks() {
+                if (!campaignData) {
+                    return [];
+                }
+
+                const result = [];
+
+                for (const section of campaignData.sections || []) {
+                    for (const text of section.tasks || []) {
+                        result.push({
+                            text,
+                            section
+                        });
+                    }
+
+                    for (const subsection of section.sections || []) {
+                        for (const text of subsection.tasks || []) {
+                            result.push({
+                                text,
+                                section: subsection,
+                                parentSection: section
+                            });
+                        }
+                    }
+                }
+
+                return result;
+            }
+
+            function refreshTasks() {
+                tasks = getTasks();
+            }
+
+            function renderProfiles() {
+                const select = $("profileSelect");
+                select.innerHTML = "";
+
+                state.profiles.forEach((profile, index) => {
+                    const total = tasks.length;
+                    const completed = Math.min(profile.currentTask || 0, total);
+                    const percent = total
+                        ? Math.round(completed / total * 100)
+                        : 0;
+
+                    const option = document.createElement("option");
+
+                    option.value = index;
+                    option.textContent = `${profile.name} (${percent}%)`;
+                    option.selected = index === state.activeProfile;
+
+                    select.appendChild(option);
+                });
+
+                if (!state.profiles.length) {
+                    const option = document.createElement("option");
+
+                    option.textContent = "No character";
+                    option.value = "";
+
+                    select.appendChild(option);
+                }
+            }
+
+            function addProfile() {
+                const input = $("profileName");
+                const name = input.value.trim();
+
+                if (!name) {
+                    input.focus();
+                    return;
+                }
+
+                state.profiles.push({
+                    name,
+                    currentTask: 0,
+                    notes: {}
+                });
+
+                state.activeProfile = state.profiles.length - 1;
+                input.value = "";
+
+                saveState();
+                render();
+            }
+
+            function deleteProfile() {
+                const profile = activeProfile();
+
+                if (!profile) {
+                    return;
+                }
+
+                if (!confirm(`Delete character "${profile.name}"?`)) {
+                    return;
+                }
+
+                state.profiles.splice(state.activeProfile, 1);
+                state.activeProfile = Math.max(0, state.activeProfile - 1);
+
+                saveState();
+                render();
+            }
+
+            function setCurrentTask(index) {
+                const profile = activeProfile();
+
+                if (!profile || !tasks[index]) {
+                    return;
+                }
+
+                profile.currentTask = index;
+
+                saveState();
+                render();
+
+                requestAnimationFrame(() => scrollToTask(index));
+            }
+
+            function nextTask(index) {
+                const profile = activeProfile();
+
+                if (!profile || !tasks[index]) {
+                    return;
+                }
+
+                profile.currentTask = Math.min(index + 1, tasks.length);
+
+                saveState();
+                render();
+
+                requestAnimationFrame(() => {
+                    scrollToTask(profile.currentTask);
+                });
+            }
+
+            function previousTask(index) {
+                const profile = activeProfile();
+
+                if (!profile) {
+                    return;
+                }
+
+                profile.currentTask = Math.max(0, index - 1);
+
+                saveState();
+                render();
+
+                requestAnimationFrame(() => {
+                    scrollToTask(profile.currentTask);
+                });
+            }
+
+            function scrollToTask(index) {
+                document
+                    .querySelector(`[data-task-index="${index}"]`)
+                    ?.scrollIntoView({
+                        behavior: "smooth",
+                        block: "center"
+                    });
+            }
+
+            function saveNote(index, value) {
+                const profile = activeProfile();
+
+                if (!profile) {
+                    return;
+                }
+
+                profile.notes ??= {};
+                profile.notes[index] = value;
+
+                saveState();
+            }
+
+            function updateTaskNoteDisplay(task, value) {
+                task.querySelector(".task-note-display")?.remove();
+
+                if (!value.trim()) {
+                    return;
+                }
+
+                const note = document.createElement("small");
+                note.className = "task-note-display";
+
+                const pencil = document.createElement("span");
+                pencil.className = "task-note-pencil";
+                pencil.textContent = "✎ ";
+
+                note.append(
+                    pencil,
+                    document.createTextNode(value.trim())
+                );
+
+                const actions = task.querySelector(".task-secondary-actions");
+
+                task.insertBefore(note, actions);
+            }
+
+            function editTaskNote(task, index, container) {
+                const profile = activeProfile();
+
+                if (!profile) {
+                    return;
+                }
+
+                const savedNote = profile.notes?.[index] || "";
+
+                container.innerHTML = "";
+
+                const textarea = document.createElement("textarea");
+
+                textarea.className = "task-note";
+                textarea.value = savedNote;
+
+                const saveButton = document.createElement("button");
+
+                saveButton.type = "button";
+                saveButton.className = "task-note-save";
+                saveButton.textContent = "Save changes";
+
+                saveButton.addEventListener("click", event => {
+                    event.stopPropagation();
+
+                    saveNote(index, textarea.value);
+
+                    container.innerHTML = "";
+
+                    const setCurrent = document.createElement("button");
+
+                    setCurrent.type = "button";
+                    setCurrent.className = "task-action-subtle";
+                    setCurrent.textContent = "Set current";
+
+                    setCurrent.addEventListener("click", event => {
+                        event.stopPropagation();
+                        setCurrentTask(index);
+                    });
+
+                    const editNotes = document.createElement("button");
+
+                    editNotes.type = "button";
+                    editNotes.className = "task-action-subtle";
+                    editNotes.textContent =
+                        textarea.value.trim()
+                            ? "Edit notes"
+                            : "Add note";
+
+                    editNotes.addEventListener("click", event => {
+                        event.stopPropagation();
+                        editTaskNote(task, index, container);
+                    });
+
+                    container.append(setCurrent, editNotes);
+
+                    updateTaskNoteDisplay(
+                        task,
+                        textarea.value
+                    );
+                });
+
+                container.append(textarea, saveButton);
+
+                requestAnimationFrame(() => {
+                    textarea.focus();
+                    textarea.setSelectionRange(
+                        textarea.value.length,
+                        textarea.value.length
+                    );
+                });
+            }
+
+            function sectionContainsCurrent(section, startIndex) {
+                const current = activeProfile()?.currentTask;
+
+                if (current === undefined) {
+                    return false;
+                }
+
+                let index = startIndex;
+
+                for (const task of section.tasks || []) {
+                    if (index++ === current) {
+                        return true;
+                    }
+                }
+
+                for (const subsection of section.sections || []) {
+                    for (const task of subsection.tasks || []) {
+                        if (index++ === current) {
+                            return true;
+                        }
+                    }
+                }
+
+                return false;
+            }
+
+            function renderSection(section, startIndex) {
+                const sectionElement = document.createElement("section");
+
+                sectionElement.className = "section";
+
+                if (sectionContainsCurrent(section, startIndex)) {
+                    sectionElement.classList.add("open");
+                }
+
+                const header = document.createElement("button");
+
+                header.className = "section-header";
+
+                header.innerHTML = `
+            <span class="section-color"></span>
+            <span class="section-title">${escapeHtml(section.title)}</span>
+            <span class="section-count"></span>
+            <span class="section-chevron">›</span>
+        `;
+
+                header.addEventListener("click", () => {
+                    sectionElement.classList.toggle("open");
+                });
+
+                const body = document.createElement("div");
+
+                body.className = "section-body";
+
+                let index = startIndex;
+                let count = 0;
+
+                for (const text of section.tasks || []) {
+                    body.appendChild(
+                        createTaskElement(text, index++, section)
+                    );
+
+                    count++;
+                }
+
+                for (const subsection of section.sections || []) {
+                    const title = document.createElement("div");
+
+                    title.className = "subsection-title";
+                    title.textContent = subsection.title;
+
+                    body.appendChild(title);
+
+                    for (const text of subsection.tasks || []) {
+                        body.appendChild(
+                            createTaskElement(
+                                text,
+                                index++,
+                                subsection,
+                                section
+                            )
+                        );
+
+                        count++;
+                    }
+                }
+
+                header.querySelector(".section-count").textContent =
+                    `${count} task${count === 1 ? "" : "s"}`;
+
+                sectionElement.append(header, body);
+
+                return {
+                    element: sectionElement,
+                    nextIndex: index
+                };
+            }
+
+            function createTaskElement(
+                text,
+                index,
+                section,
+                parentSection = null
+            ) {
+                const profile = activeProfile();
+
+                const current =
+                    profile?.currentTask === index;
+
+                const completed =
+                    !!profile &&
+                    index < profile.currentTask;
+
+                const future =
+                    !!profile &&
+                    index > profile.currentTask;
+
+                const savedNote =
+                    profile?.notes?.[index] || "";
+
+                const task = document.createElement("article");
+
+                task.className = "task";
+                task.dataset.taskIndex = index;
+
+                if (current) {
+                    task.classList.add("current");
+                }
+
+                if (completed) {
+                    task.classList.add("completed");
+                }
+
+                if (future) {
+                    task.classList.add("future");
+                }
+
+                const heading = document.createElement("div");
+
+                heading.className = "task-heading";
+
+                const checkbox = document.createElement("input");
+
+                checkbox.type = "checkbox";
+                checkbox.className = "task-check";
+                checkbox.checked = completed;
+                checkbox.disabled = true;
+
+                const textElement = document.createElement("div");
+
+                textElement.className = "task-text";
+
+                if (current) {
+                    const label = document.createElement("div");
+
+                    label.className = "current-label";
+                    label.textContent = "Current task";
+
+                    textElement.appendChild(label);
+                }
+
+                const taskText = document.createElement("div");
+
+                const match = text.match(/^(.+?)\s+-\s+(.*)$/);
+
+                if (match) {
+                    taskText.innerHTML =
+                        `<strong>${escapeHtml(match[1])}</strong> - ${escapeHtml(match[2])}`;
+                } else {
+                    taskText.textContent = text;
+                }
+
+                textElement.appendChild(taskText);
+
+                heading.append(checkbox, textElement);
+                task.appendChild(heading);
+
+                if (current) {
+                    const textarea =
+                        document.createElement("textarea");
+
+                    textarea.className = "task-note";
+                    textarea.placeholder = "Note...";
+                    textarea.value = savedNote;
+
+                    textarea.addEventListener("input", () => {
+                        saveNote(index, textarea.value);
+                    });
+
+                    task.appendChild(textarea);
+                } else if (savedNote.trim()) {
+                    const note = document.createElement("small");
+
+                    note.className = "task-note-display";
+
+                    const pencil = document.createElement("span");
+
+                    pencil.className = "task-note-pencil";
+                    pencil.textContent = "✎ ";
+
+                    note.append(
+                        pencil,
+                        document.createTextNode(savedNote.trim())
+                    );
+
+                    task.appendChild(note);
+                }
+
+                if (!current) {
+                    const secondary =
+                        document.createElement("div");
+
+                    secondary.className =
+                        "task-secondary-actions";
+
+                    const setCurrent =
+                        document.createElement("button");
+
+                    setCurrent.className =
+                        "task-action-subtle set-current";
+
+                    setCurrent.textContent = "Set current";
+
+                    setCurrent.addEventListener("click", event => {
+                        event.stopPropagation();
+                        setCurrentTask(index);
+                    });
+
+                    const editNotes =
+                        document.createElement("button");
+
+                    editNotes.className =
+                        "task-action-subtle";
+
+                    editNotes.textContent =
+                        savedNote.trim()
+                            ? "Edit notes"
+                            : "Add note";
+
+                    editNotes.addEventListener("click", event => {
+                        event.stopPropagation();
+                        editTaskNote(
+                            task,
+                            index,
+                            secondary
+                        );
+                    });
+
+                    secondary.append(
+                        setCurrent,
+                        editNotes
+                    );
+
+                    task.appendChild(secondary);
+                }
+
+                if (current) {
+                    const actions =
+                        document.createElement("div");
+
+                    actions.className = "task-actions";
+
+                    const back =
+                        document.createElement("button");
+
+                    back.className = "btn";
+                    back.textContent = "Not yet";
+
+                    back.addEventListener("click", () => {
+                        previousTask(index);
+                    });
+
+                    const next =
+                        document.createElement("button");
+
+                    next.className = "btn next-btn";
+
+                    next.textContent =
+                        index === tasks.length - 1
+                            ? "Finish"
+                            : "Next";
+
+                    next.addEventListener("click", () => {
+                        nextTask(index);
+                    });
+
+                    actions.append(back, next);
+
+                    const disclaimer =
+                        document.createElement("div");
+
+                    disclaimer.className = "disclaimer";
+                    disclaimer.textContent =
+                        "Next will automatically mark this task complete.";
+
+                    task.append(actions, disclaimer);
+                }
+
+                return task;
+            }
+
+            function renderCampaign() {
+                const container = $("campaign");
+
+                container.innerHTML = "";
+
+                if (!campaignData) {
+                    const empty =
+                        document.createElement("div");
+
+                    empty.className = "empty";
+                    empty.textContent =
+                        "Campaign data not loaded.";
+
+                    container.appendChild(empty);
+                    return;
+                }
+
+                if (!activeProfile()) {
+                    const empty =
+                        document.createElement("div");
+
+                    empty.className = "empty";
+                    empty.textContent =
+                        "Create a character above to start.";
+
+                    container.appendChild(empty);
+                    return;
+                }
+
+                let index = 0;
+
+                for (const section of campaignData.sections || []) {
+                    const result =
+                        renderSection(section, index);
+
+                    container.appendChild(result.element);
+
+                    index = result.nextIndex;
+                }
+            }
+
+            function renderToc() {
+                const container = $("toc");
+
+                container.innerHTML = "";
+
+                if (!campaignData) {
+                    return;
+                }
+
+                let index = 0;
+
+                for (const section of campaignData.sections || []) {
+                    const group =
+                        document.createElement("div");
+
+                    group.className = "toc-section";
+
+                    const title =
+                        document.createElement("div");
+
+                    title.className = "toc-title";
+                    title.textContent = section.title;
+
+                    group.appendChild(title);
+
+                    for (const text of section.tasks || []) {
+                        group.appendChild(
+                            createTocTask(text, index++)
+                        );
+                    }
+
+                    for (const subsection of section.sections || []) {
+                        const subTitle =
+                            document.createElement("div");
+
+                        subTitle.className = "toc-title";
+                        subTitle.style.paddingLeft = "15px";
+                        subTitle.textContent =
+                            subsection.title;
+
+                        group.appendChild(subTitle);
+
+                        for (const text of subsection.tasks || []) {
+                            group.appendChild(
+                                createTocTask(text, index++)
+                            );
+                        }
+                    }
+
+                    container.appendChild(group);
+                }
+            }
+
+            function createTocTask(text, index) {
+                const profile = activeProfile();
+
+                const button =
+                    document.createElement("button");
+
+                button.className = "toc-task";
+
+                if (profile?.currentTask === index) {
+                    button.classList.add("current");
+                }
+
+                if (profile && index < profile.currentTask) {
+                    button.classList.add("done");
+                }
+
+                const checkbox =
+                    document.createElement("input");
+
+                checkbox.type = "checkbox";
+                checkbox.className = "toc-check";
+                checkbox.checked =
+                    !!profile &&
+                    index < profile.currentTask;
+                checkbox.disabled = true;
+
+                const label =
+                    document.createElement("span");
+
+                label.className = "toc-label";
+                label.textContent = text;
+
+                button.append(checkbox, label);
+
+                button.addEventListener("click", () => {
+                    closeSheet();
+                    setCurrentTask(index);
+                });
+
+                return button;
+            }
+
+            function renderProgress() {
+                const completed =
+                    Math.min(
+                        activeProfile()?.currentTask || 0,
+                        tasks.length
+                    );
+
+                const percent =
+                    tasks.length
+                        ? Math.round(
+                            completed / tasks.length * 100
+                        )
+                        : 0;
+
+                $("progressText").textContent =
+                    `${completed} / ${tasks.length}`;
+
+                $("progressPercent").textContent =
+                    `${percent}%`;
+
+                $("progressFill").style.width =
+                    `${percent}%`;
+            }
+
+            function render() {
+                refreshTasks();
+                renderProfiles();
+                renderProgress();
+                renderCampaign();
+            }
+
+            function openSheet() {
+                $("sheet").classList.add("open");
+                $("sheetBackdrop").classList.add("open");
+                renderToc();
+            }
+
+            function closeSheet() {
+                $("sheet").classList.remove("open");
+                $("sheetBackdrop").classList.remove("open");
+            }
+
+            async function loadCampaign() {
+                try {
+                    const response =
+                        await fetch("data/acts.json");
+
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP ${response.status}`
+                        );
+                    }
+
+                    const data =
+                        await response.json();
+
+                    validateCampaignData(data);
+
+                    campaignData = data;
+
+                    render();
+                } catch (error) {
+                    console.info(
+                        "Automatic JSON loading failed.",
+                        error
+                    );
+
+                    render();
+                }
+            }
+
+            async function loadJsonFile(file) {
+                try {
+                    const data =
+                        JSON.parse(await file.text());
+
+                    validateCampaignData(data);
+
+                    campaignData = data;
+
+                    render();
+                } catch (error) {
+                    alert(
+                        "Could not load campaign JSON:\n\n" +
+                        error.message
+                    );
+                }
+            }
+
+            function validateCampaignData(data) {
+                if (
+                    !data ||
+                    !Array.isArray(data.sections)
+                ) {
+                    throw new Error(
+                        "Invalid acts.json: expected a sections array."
+                    );
+                }
+
+                for (const section of data.sections) {
+                    if (typeof section.title !== "string") {
+                        throw new Error(
+                            "Invalid section: missing title."
+                        );
+                    }
+
+                    if (
+                        section.tasks &&
+                        !Array.isArray(section.tasks)
+                    ) {
+                        throw new Error(
+                            `Invalid tasks array in ${section.title}.`
+                        );
+                    }
+
+                    if (
+                        section.sections &&
+                        !Array.isArray(section.sections)
+                    ) {
+                        throw new Error(
+                            `Invalid subsection array in ${section.title}.`
+                        );
+                    }
+                }
+            }
+
+            $("addProfile")
+                .addEventListener("click", addProfile);
+
+            $("profileName")
+                .addEventListener("keydown", event => {
+                    if (event.key === "Enter") {
+                        addProfile();
+                    }
+                });
+
+            $("profileSelect")
+                .addEventListener("change", event => {
+                    state.activeProfile =
+                        Number(event.target.value);
+
+                    saveState();
+                    render();
+                });
+
+            $("deleteProfile")
+                .addEventListener("click", deleteProfile);
+
+            $("tocButton")
+                .addEventListener("click", openSheet);
+
+            $("closeSheet")
+                .addEventListener("click", closeSheet);
+
+            $("sheetBackdrop")
+                .addEventListener("click", closeSheet);
+
+            $("uploadButton")
+                .addEventListener("click", () => {
+                    $("jsonUpload").click();
+                });
+
+            $("jsonUpload")
+                .addEventListener("change", event => {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        loadJsonFile(file);
+                    }
+                });
+
+            render();
+            loadCampaign();
+        })();
+
+        /* SSF Reference */
+        (() => {
+            let data = [];
+
+            const content = $("ssfContent");
+            const search = $("search");
+            const clearSearch = $("clearSearch");
+            const searchInfo = $("searchInfo");
+            const empty = $("ssfEmpty");
+
+            function highlight(text, query) {
+                const safe = escapeHtml(text);
+
+                if (!query) {
+                    return safe;
+                }
+
+                const escapedQuery =
+                    query.replace(
+                        /[.*+?^${}()|[\]\\]/g,
+                        "\\$&"
+                    );
+
+                return safe.replace(
+                    new RegExp(
+                        `(${escapedQuery})`,
+                        "ig"
+                    ),
+                    "<mark>$1</mark>"
+                );
+            }
+
+            function renderBody(items, query = "") {
+                return `
+            <ul>
+                ${items.map(item => `
+                    <li>${highlight(item, query)}</li>
+                `).join("")}
+            </ul>
+        `;
+            }
+
+            function render() {
+                content.innerHTML =
+                    data.map(section => `
+                <section class="ref-section">
+                    <div class="ref-section-title">
+                        ${escapeHtml(section.section)}
+                    </div>
+
+                    ${section.entries.map((entry, index) => `
+                        <article
+                            class="entry"
+                            data-section="${escapeHtml(section.section)}"
+                            data-index="${index}"
+                        >
+                            <button
+                                class="entry-header"
+                                type="button"
+                            >
+                                <span class="arrow">▶</span>
+                                <span class="entry-title">
+                                    ${escapeHtml(entry.title)}
+                                </span>
+                                <span class="entry-count">
+                                    ${entry.items.length}
+                                </span>
+                            </button>
+
+                            <div class="entry-body">
+                                ${renderBody(entry.items)}
+                            </div>
+                        </article>
+                    `).join("")}
+                </section>
+            `).join("");
+
+                content
+                    .querySelectorAll(".entry-header")
+                    .forEach(button => {
+                        button.addEventListener("click", () => {
+                            button
+                                .closest(".entry")
+                                .classList
+                                .toggle("open");
+                        });
+                    });
+            }
+
+            function searchEntries() {
+                const query =
+                    search.value.trim().toLowerCase();
+
+                clearSearch.style.display =
+                    query ? "block" : "none";
+
+                const entries =
+                    [...content.querySelectorAll(".entry")];
+
+                let matches = 0;
+
+                entries.forEach(entry => {
+                    const section =
+                        data.find(
+                            section =>
+                                section.section ===
+                                entry.dataset.section
+                        );
+
+                    const item =
+                        section.entries[
+                        Number(entry.dataset.index)
+                        ];
+
+                    const haystack = [
+                        item.title,
+                        ...item.items
+                    ]
+                        .join(" ")
+                        .toLowerCase();
+
+                    const matched =
+                        !query ||
+                        haystack.includes(query);
+
+                    entry.classList.toggle(
+                        "hidden",
+                        !matched
+                    );
+
+                    entry.classList.toggle(
+                        "open",
+                        !!query && matched
+                    );
+
+                    const title =
+                        entry.querySelector(".entry-title");
+
+                    title.innerHTML =
+                        highlight(item.title, query);
+
+                    const body =
+                        entry.querySelector(".entry-body");
+
+                    body.innerHTML =
+                        renderBody(item.items, query);
+
+                    if (matched && query) {
+                        matches++;
+                    }
+                });
+
+                searchInfo.textContent =
+                    query
+                        ? `${matches} ${matches === 1 ? "entry" : "entries"} matched`
+                        : "";
+
+                empty.style.display =
+                    query && matches === 0
+                        ? "block"
+                        : "none";
+            }
+
+            search.addEventListener(
+                "input",
+                searchEntries
+            );
+
+            clearSearch.addEventListener("click", () => {
+                search.value = "";
+                searchEntries();
+                search.focus();
+            });
+
+            fetch("data/ssfref.json")
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(
+                            `HTTP ${response.status}`
+                        );
+                    }
+
+                    return response.json();
+                })
+                .then(json => {
+                    data = json.sections || [];
+                    render();
+                })
+                .catch(error => {
+                    console.error(error);
+                    empty.textContent =
+                        "Could not load data/ssfref.json.";
+                    empty.style.display = "block";
+                });
+        })();
+    </script>
+
+</body>
+
+</html>

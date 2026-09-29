@@ -1,0 +1,195 @@
+{
+  "source_file": "acts-src.txt",
+  "sections": [
+    {
+      "id": "Act_1",
+      "title": "Act 1",
+      "tasks": [
+        "Kill Bloated Miller - Use skillpoint - Go to Clearfell Encampment.",
+        "Town (Clearfell Encampment) - Talk to NPCs - Go to Clearfell.",
+        "Clearfell - Kill Beira of the Rotten Pack (Cold Resistance bonus) - Go to Grelwood.",
+        "Grelwood - Tag WP - Summon Una (near WP) - Go to Red Vale (opposite side).",
+        "Red Vale - Activate 3 Obelisks of Rust & Kill The Rust King - Take Runed Girdle, Runed Guard and Runed Skull Cap - Portal to Town.",
+        "Town - Talk to NPCs for Runed Spikes - WP to Grelwood.",
+        "Grelwood - Activate 3 Runic Seals - Portal to Town.",
+        "Town - Talk to NPCs - Go to Grelwood.",
+        "Grelwood - Go to Grim Tangle (top-left of Una)",
+        "Grim Tangle - Summon Una - Summon Farrow - Kill boss - Go to Cemetery of the Eternals.",
+        "Cemetery - Talk to Lachlann - Enter Mausoleum of the Praetor - Kill Draven, the Eternal Praetor - Take Draven's Memorial Key Piece - Go to Cemetery.",
+        "Cemetery - Enter Tomb of the Consort (opposite WP) - Kill Asinia, the Praetor's Consort - Take Asinia's Memorial Key Piece - Go to Cemetery.",
+        "Cemetery - Talk to Lachlann - Kill Lachlann of Endless Lament - Take Count Lachlann's Ring - Portal to Town.",
+        "Town - Talk to NPCs - WP to Hunting Grounds.",
+        "Hunting Grounds - Talk to Delwyn - Kill The Crowbell (2 skillpoints) - Go to Freythorn.",
+        "Freythorn - Complete all rituals - Kill The King in the Mists (30 Spirit bonus) - Talk to Finn - Portal to Town.",
+        "Town - Talk to NPCs - WP to Hunting Grounds - Go to Ogham Farmlands.",
+        "Ogham Farmlands - Tag WP - Take Una's Lute from Una's Lute Box (before farms) - Go to Ogham Village.",
+        "Ogham Village - Tag WP - Take Smithing Tools (salvage bench) - Portal to Town - Talk to Renly - Return to Ogham Village",
+        "Ogham Village - Kill The Executioner (end of zone) - Use Lever - Talk to Leitis - Go to Manor Ramparts.",
+        "Manor Ramparts - Tag WP - Go to Town - Talk to NPCs (2 skillpoints) - WP to Manor Ramparts - Go to Ogham Manor.",
+        "Ogham Manor - Kill Candlemass, the Living Rite (Life bonus) - Go down stairs to Arena - Kill Count Geonor - Portal to Town.",
+        "Town - Talk to NPCs - Talk to Hooded One - Go to Act 2."
+      ]
+    },
+    {
+      "id": "Act_2",
+      "title": "Act 2",
+      "tasks": [
+        "Vastiri Outskirts - Kill Rathbreaker - Portal to Town - Talk to Zarka - Go to Ardura Caravan.",
+        "Town (Ardura Caravan) - Talk to NPCs - Desert Map to Mawdun Quarry.",
+        "Mawdun Quarry - Go to Mawdun Mine.",
+        "Mawdun Mine - Tag WP - Kill Rudja, the Dread Engineer - Open Cage - Talk to Risu - Portal to Town.",
+        "Town - Talk to NPCs - Desert Map to Traitor's Passage.",
+        "Traitor's Passage - Tag WP - Activate Ancient Seal (middle of zone) - Activate 3 Runic Seals - Kill Balbala, the Traitor - Take Balbala's Barya - Go to Halani Gates.",
+        "Halani Gates - Tag WP - Summon Asala - Defeat Jamanra, the Risen King - Go to sandstorm - Portal to Town.",
+        "Town - Talk to NPCs - Desert Map to Keth.",
+        "Keth - Kill serpents for Kabala Clan Relic - Kill Kabala, Constrictor Queen (2 skillpoints) - Go to Lost City.",
+        "Lost City - Go to Buried Shrines - Go to Heart of Keth.",
+        "Heart of Keth - Kill Azarian, the Forsaken Son - Talk to Water Goddess - Take Everburning Cinders - Ignite Water Goddess - Take The Essence of Water - Portal to Town.",
+        "Town - Talk to NPCs - Desert Map to Mastodon Badlands.",
+        "Mastodon Badlands - Go to Lightless Passage (center of zone) - Go to Well of Souls.",
+        "Well of Souls - Speak to Lurking Creature (Reveal Desecrated mods) - Speak to Sin - WP to Lightless Passage - Return to Mastodon Badlands.",
+        "Mastodon Badlands - Go to Bone Pits.",
+        "Bone Pits - Tag WP - Kill monsters for Sun Clan Relic - Go to Blackrib Pit - Kill Iktab, the Deathlord and Ekbab, Ancient Steed - Take Mastodon Tusks - Portal to Town.",
+        "Town - Talk to NPCs - Desert Map to Valley of Titans.",
+        "Valley of Titans - Tag WP - Activate Medallion near WP (Charm bonus, can be changed) - Activate 3 Ancient Seals around the zone - Enter Titan Grotto.",
+        "Titan Grotto - Kill Zalmarath, the Colossus - Take The Flame Ruby - Portal to Town.",
+        "Town - Talk to NPCs for The Horn of the Vastiri - Desert Map to Traitor's Passage - Go to the front of the caravan and Sound The Horn - Talk to NPCs - Desert Map to Deshar.",
+        "Deshar - Find Lailuma's Body (Fallen Dekhara) - Take Final Letter - Kill Hunin, Storm Caller and Mugin, Frost Bringer - Take Djinn Barya - Go to Path of Mourning.",
+        "Path of Mourning - Go to Spires of Deshar.",
+        "Spires of Deshar - Tag WP - Activate Sisters of Garukhan shrine (Lightning Resistance boost) - Kill Tor Gul, the Defiler - Portal to Town.",
+        "Town - Talk to NPCs (2 skillpoints) - Desert Map to Dreadnought.",
+        "Dreadnought - Tag WP - Kill Jamanra, the Abomination - Portal to Town.",
+        "Town - Talk to NPCs - Talk to Asala - Go to Act 3."
+      ]
+    },
+    {
+      "id": "Act_3",
+      "title": "Act 3",
+      "tasks": [
+        "Sandswept Marsh - Go to Ziggurat Encampment.",
+        "Town (Ziggurat Encampment) - Talk to NPCs - Go to Jungle Ruins (top).",
+        "Jungle Ruins - Kill Mighty Silverfist (2 skillpoints) - Go to Venom Crypts (center of zone near WP).",
+        "Venom Crypts - Take Corpse-Snake Venom from Corpse (end of zone) - Portal to Town.",
+        "Town - Talk to Servi (Various boosts, cannot be changed) - WP to Jungle Ruins - Go to Infested Barrens (opposite from WP).",
+        "Infested Barrens - Tag WP - Go to Chimeral Wetlands (opposite Azak Bog).",
+        "Chimeral Wetlands - Tag WP - Kill Xyclucian, the Chimera - Take Chimeral Inscribed Ultimatum - Go to Jiquani's Machinarium (within boss arena).",
+        "Jiquani's Machinarium - Tag WP - Summon Alva - Take Small Soul Core - Activate Stone Altar - Take Small Soul Cores & Activate Stone Altars - Kill Blackjaw, the Remnant (Fire Resistance boost) - Go to Jiquani's Sanctum.",
+        "Jiquani's Sanctum - Tag WP - Summon Alva - Find 3 Medium Soul Cores & Start 2 Generators (corners of zone) - Activate Large Soul Core near Alva - Kill Zicoatl, Warden of the Core - Take Large Soul Core - WP to Jungle Ruins.",
+        "Jungle Ruins - Activate Stone Altar (near WP) - Go to Matlan Waterways (nearby).",
+        "Matlan Waterways - Stand upon all the Pressure Plates - Pull the large Canal Lever (end of zone) - Go to Azak Bog.",
+        "Azag Bog - Tag WP - Summon Servi - Kill Ignagduk, the Bog Witch (30 Spirit bonus) - Take Ignagduk's Ghastly Spear - Portal to Town.",
+        "Town - Go down the stairs - Talk to Alva - Go to Drowned City.",
+        "Drowned City - Tag WP - Summon Oswald - Go to Molten Vault.",
+        "Molten Vault - Tag WP - Use Lever - Pull Sluice Gate Lever - Kill Mektul, the Forgemaster - Take The Hammer of Kamasa - Talk to Oswald (reforging bench) - Portal to Town.",
+        "Town - Talk to NPCs - WP to Drowned City - Go to Apex of Filth.",
+        "Apex of Filth - Tag WP - Kill Queen of Filth (end of zone) - Take Temple Door Idol - Portal to Town.",
+        "Town - Go down the stairs - Talk to Alva - Open Door - Go to Temple of Kopec.",
+        "Temple of Kopec - Climb Stairs twice (corner of pyramid) - Kill Ketzuli, High Priest of the Sun - Summon Alva, Investigate Platform - Enter gateway - Tag WP (behind gateway) - Go down stairs - Go to Utzaal.",
+        "Utzaal - Tag WP - Kill Viper Napuatzi - Kill monsters for Sacrificial Heart - Go to Aggorat.",
+        "Aggorat - Tag WP - Go to altar - Take Sacrificial Dagger - Place and stab Sacrificial Heart (2 skillpoints) - Go to Black Chambers.",
+        "Black Chambers - Tag WP - Kill Doryani, Royal Thaumaturge and Doryani's Triumph - Talk to Doryani - Portal to Town - Talk to Doryani for apocalypse.",
+        "Town - Talk to NPCs - Talk to Alva - Go to Act 4."
+      ]
+    },
+    {
+      "id": "Act_4",
+      "title": "Act 4",
+      "tasks": [
+        "Town (Kingsmarch) - Talk to NPCs for Book Charter - Talk to Makoru - Sail to Kedge Bay.",
+        "Kedge Bay - Click Dead Man's Chest for Ripped Map Piece - Go to Journey's End.",
+        "Journey's End - Summon Tujen - Kill Captain Hartlin (end of zone) - Take Verisium Ingots - Portal to Town",
+        "Town - Talk to Dannig for Verisium Spikes - WP to Journey's End.",
+        "Journey's End - Talk to Freya - Activate Karui Totems - Kill Omniphobia, Fear Manifest - Portal to Town.",
+        "Town - Talk to Tujen (2 skillpoints) - Talk to Makoru - Sail to Whakapanu Island.",
+        "Whakapanu Island - Click Petrified Pirate for Frayed Map Piece - Kill Great White One - Take Shark Fin - Go to Singing Caverns.",
+        "Singing Caverns - Tag WP - Kill Diamora, Song of Death (end of zone) - Talk to Hooded One - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Ngakanu.",
+        "Ngakanu - Talk to Kaimana (Defense bonus, cannot be changed) - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Abandoned Prison.",
+        "Abandoned Prison - Kill monsters for Chapel Key - Open Chapel Door - Tag WP - Activate Goddess of Justice (Flask recovery, can be changed) - Use Levers - Go to Solitary Confinement.",
+        "Solitary Confinement - Use Levers - Kill The Prisoner (end of zone) - Talk to Hooded One - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Isle of Kin.",
+        "Isle of Kin - Click Flayed Sailor at coastline for Torn Map Piece - Kill The Blind Beast (optional) - Go to Volcanic Warrens (top left/top right).",
+        "Volcanic Warrens - Kill Krutog, Lord of Kin (end of zone) - Talk to Hooded One - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Shrike Island.",
+        "Shrike Island - Click Corpse Nest for Ragged Map Piece (near end) - Kill Scourge of the Skies (end of zone) - Talk to Hooded One - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Eye of Hinekora.",
+        "Eye of Hinekora - Talk to NPCs - Activate Well of Hinekora - Pass 3 tests - Click Pay your Respects (Mana boost) - Go to Halls of the Dead (further down).",
+        "Halls of the Dead - Tag WP - Pass Tawhoa's test (Dex/Lightning Resistance) - Pass Tasalio's test (Int/Cold Resistance) - Pass Ngamahu's test (Str/Fire Resistance) - Defeat Yama The White - Take Silver Coin - Go to Trial of the Ancestors.",
+        "Trial of the Ancestors - Tag WP - Talk to Navali - Take Tattoo of Hinekora (2 skillpoints) - Return to Ship.",
+        "Ship - Talk to Makoru - Sail to Arastas.",
+        "Arastas - Tag WP - Talk to Missionary Lorandis - Enter church, Exit the church, Destroy forcefield - Kill Torvian, Hand of the Saviour - Go to Excavation.",
+        "Excavation - Kill Benedictus, First Herald of Utopia - Enter forge - Talk to Hooded One - Portal to Town.",
+        "Town - Talk to NPCs - Talk to Rhodri (at the ship) - Sail to Ngakanu.",
+        "Ngakanu - Go to Heart of the Tribe.",
+        "Heart of the Tribe - Tag WP - Kill Tavakai, the Chieftain, Tavakai, the Fallen and Tavakai, the Consumed - Portal to Town.",
+        "Town - Talk to Makoru about map pieces (on ship) - Sail to Plunder's Point.",
+        "Plunder's Point - Complete expedition - Enter Deserted Post to unlock Runeforging - Return to Ship - WP to Town.",
+        "Town - Talk to NPCs - Talk to Hooded One - Go to Ogham, Vastiri, or Mount Kriar."
+      ]
+    },
+    {
+      "id": "Interludes",
+      "title": "Interludes",
+      "tasks": [],
+      "sections": [
+        {
+          "id": "Mount_Kriar",
+          "title": "Mount Kriar",
+          "tasks": [
+            "Town (The Glade) - Talk to NPCs - Go to Ashen Forest.",
+            "Ashen Forest - Go to Kriar Village.",
+            "Kriar Village - Tag WP - Kill Lythara, the Wayward Spear (40 Spirit boost) - Go to Glacial Tarn.",
+            "Glacial Tarn - Tag WP - Go to Howling Caves.",
+            "Howling Caves - Tag WP - Kill The Abominable Yeti - Take Icy Tusks - Portal to Town.",
+            "Town - Talk to Hilda (2 skillpoints) - WP to Glacial Tarn.",
+            "Glacial Tarn - Kill Rakkar, the Frozen Talon - Go to Kriar Peaks.",
+            "Kriar Peaks - Tag WP - Take gift from Elder Madox - Go to Etched Ravine.",
+            "Etched Ravine - Tag WP - Kill Stormgore, the Guardian - Go to Cuachic Vault.",
+            "Cuachic Vault - Tag WP - Kill Zelina, Blood Priestess and Zolin, Blood Priest - Summon Doryani - Portal to Town."
+          ]
+        },
+        {
+          "id": "Ogham",
+          "title": "Ogham",
+          "tasks": [
+            "Town (The Refuge) - Talk to NPCs - Go to Scorched Farmlands (bottom exit).",
+            "Scorched Farmlands - Kill Heldra of the Black Pyre and Isolde of the White Shroud - Go to Stones of Serle.",
+            "Stones of Serle - Activate all Runed Megaliths - Go to center rune - Kill Siora, Blade of the Mists - Talk to Una - Go to Scorched Farmlands.",
+            "Scorched Farmlands - Go to darkness (near bosses) - Go to Blackwood - Go to Holten.",
+            "Holten - Go to Wolvenhold.",
+            "Wolvenhold - Kill Oswin, the Dread Warden (2 skillpoints) - Go to Holten - Go to Holten Estate.",
+            "Holten Estate - Tag WP - Go upstairs, then downstairs - Kill Thane Wulfric and Lady Elswyth (ground floor) - Portal to Town.",
+            "Town - Talk to NPCs - Talk to Hooded One - Go to Vastiri."
+          ]
+        },
+        {
+          "id": "Vastiri",
+          "title": "Vastiri",
+          "tasks": [
+            "Town (The Khari Bazaar) - Talk to NPCs - Go to Khari Crossing.",
+            "Khari Crossing - Kill Akthi, the Final Sting and Anundr, the Sandworm (top right) - Portal to Town.",
+            "Town - Talk to Risu (2 skillpoints) - Return to Khari Crossing.",
+            "Khari Crossing - Go to Skullmaw Stairway (top left) - Take Molten One's Gift (Life boost) - Return to Khari Crossing - Go to Pools of Khatal (bottom left).",
+            "Pools of Khatal - Tag WP - Go to Sel Khari Sanctuary.",
+            "Sel Khari Sanctuary - Tag WP - Kill Elzarah, the Cobra Lord - Talk to Asala - Portal to Town.",
+            "Town - Talk to NPCs - Go to Khari Crossing - Go to Galai Gates (left).",
+            "Galai Gates - Tag WP - Kill Vornas, the Fell Flame - Go to Qimah.",
+            "Qimah - Tag WP - Activate Seven Pillars (Various boosts, can be changed) - Summon Jado (end of zone) - Go to Qimah Reservoir.",
+            "Qimah Reservoir - Tag WP - Kill Azmadi, the Faridun Prince - Activate Grand Barya - Talk to Jado - Portal to Town.",
+            "Town - Talk to NPCs - Talk to Hooded One - Go to Mount Kriar."
+          ]
+        },
+        {
+          "id": "Endgame",
+          "title": "Endgame",
+          "tasks": [
+            "WP to Kingsmarch (Act 4 town)",
+            "Kingsmarch - Talk to NPCs - Talk to Hooded One (2 skillpoints) - Travel to Oriath.",
+            "The Ziggurat Refuge - Talk to NPCs - Click Hooded One (right of WP) - Talk to Doryani - Run one map in Ziggurat to unlock maps - Start mapping in hideout."
+          ]
+        }
+      ]
+    }
+  ]
+}
