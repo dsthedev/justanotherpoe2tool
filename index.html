@@ -32,6 +32,9 @@
                     <input id="profileName" class="profile-input" type="text" placeholder="New character">
                     <button class="btn btn-primary" id="addProfile">Add</button>
                     <button class="btn btn-danger" id="deleteProfile" title="Delete character">×</button>
+                    <button class="btn" id="exportProfiles">Export</button>
+                    <button class="btn" id="importProfiles">Import</button>
+                    <button class="btn btn-danger" id="deleteAllProfiles">Delete All</button>
                 </div>
 
                 <div class="progress">
@@ -52,6 +55,7 @@
             </div>
 
             <input id="jsonUpload" type="file" accept=".json,application/json" hidden>
+            <input id="profilesUpload" type="file" accept=".json,application/json" hidden>
         </section>
 
         <section id="ssf" class="view">
@@ -249,6 +253,95 @@
 
                 state.profiles.splice(state.activeProfile, 1);
                 state.activeProfile = Math.max(0, state.activeProfile - 1);
+
+                saveState();
+                render();
+            }
+            function exportProfiles() {
+                const exportData = {
+                    version: 1,
+                    exportedAt: new Date().toISOString(),
+                    profiles: state.profiles,
+                    activeProfile: state.activeProfile
+                };
+
+                const blob = new Blob(
+                    [JSON.stringify(exportData, null, 2)],
+                    { type: "application/json" }
+                );
+
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+
+                link.href = url;
+                link.download = "poe2-characters.json";
+                link.click();
+
+                URL.revokeObjectURL(url);
+            }
+
+            async function importProfiles(file) {
+                try {
+                    const imported = JSON.parse(await file.text());
+
+                    if (!imported || !Array.isArray(imported.profiles)) {
+                        throw new Error(
+                            "Invalid character file: expected a profiles array."
+                        );
+                    }
+
+                    if (
+                        !imported.profiles.every(profile =>
+                            profile &&
+                            typeof profile.name === "string" &&
+                            Number.isInteger(profile.currentTask)
+                        )
+                    ) {
+                        throw new Error("Invalid character data.");
+                    }
+
+                    if (
+                        !confirm(
+                            "Importing characters will replace your current characters. Continue?"
+                        )
+                    ) {
+                        return;
+                    }
+
+                    state.profiles = imported.profiles;
+                    state.activeProfile =
+                        Number.isInteger(imported.activeProfile) &&
+                            imported.activeProfile >= 0 &&
+                            imported.activeProfile < state.profiles.length
+                            ? imported.activeProfile
+                            : 0;
+
+                    saveState();
+                    render();
+
+                } catch (error) {
+                    alert(
+                        "Could not import characters:\n\n" +
+                        error.message
+                    );
+                }
+            }
+
+            function deleteAllProfiles() {
+                if (!state.profiles.length) {
+                    return;
+                }
+
+                if (
+                    !confirm(
+                        `Delete all ${state.profiles.length} characters? This cannot be undone.`
+                    )
+                ) {
+                    return;
+                }
+
+                state.profiles = [];
+                state.activeProfile = 0;
 
                 saveState();
                 render();
@@ -1006,6 +1099,28 @@
 
             $("deleteProfile")
                 .addEventListener("click", deleteProfile);
+
+            $("exportProfiles")
+                .addEventListener("click", exportProfiles);
+
+            $("importProfiles")
+                .addEventListener("click", () => {
+                    $("profilesUpload").click();
+                });
+
+            $("profilesUpload")
+                .addEventListener("change", event => {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        importProfiles(file);
+                    }
+
+                    event.target.value = "";
+                });
+
+            $("deleteAllProfiles")
+                .addEventListener("click", deleteAllProfiles);
 
             $("tocButton")
                 .addEventListener("click", openSheet);
