@@ -2,6 +2,8 @@
 
 Just another [PoE2 tool]([url](https://dsthedev.github.io/justanotherpoe2tool/)).
 
+![showcase](screenshot.png)
+
 This is a small hobby project I'm building for fun while playing Path of Exile 2. It collects a few simple tools and references that I find useful while playing, without trying to become a full-blown build planner or game database.
 
 Currently includes:
