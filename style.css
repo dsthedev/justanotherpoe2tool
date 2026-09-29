@@ -73,6 +73,11 @@ button {
     padding: 4px 0 10px;
 }
 
+.header-actions {
+    display: flex;
+    gap: 6px;
+}
+
 .scroll-bar {
     position: fixed;
     top: -60px;
@@ -289,6 +294,24 @@ input[type=text] {
     border-top: 1px solid var(--border)
 }
 
+.ssf-section {
+    margin-bottom: 18px;
+}
+
+.ssf-section h3 {
+    position: sticky;
+    top: -1px;
+    z-index: 1;
+
+    margin: 0 -12px 8px;
+    padding: 8px 12px;
+
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+
+    font-size: 13px;
+}
+
 .section.open .section-body {
     display: block
 }
@@ -498,6 +521,16 @@ input[type=text] {
 
 .sheet.open {
     right: 0
+}
+
+.sheet-left {
+    left: 0;
+    right: auto;
+    transform: translateX(-100%);
+}
+
+.sheet-left.open {
+    transform: translateX(0);
 }
 
 .sheet-header {

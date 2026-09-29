@@ -12,20 +12,28 @@
 
     <div class="app">
 
-        <nav class="global-nav">
-            <button class="nav-btn active" data-view="rush">Rush to Maps</button>
-            <button class="nav-btn" data-view="ssf">SSF Reference</button>
-        </nav>
-
         <section id="rush" class="view active">
+
             <header class="header">
+
                 <div class="header-main">
+
                     <div class="header-row">
+
                         <div class="title">
                             <h1>Rush to Maps</h1>
                             <small>PoE2 campaign progress</small>
                         </div>
-                        <button class="btn" id="tocButton">ToC</button>
+
+                        <div class="header-actions">
+                            <button class="btn" id="ssfButton" type="button">
+                                SSF
+                            </button>
+                            <button class="btn" id="tocButton" type="button">
+                                ToC
+                            </button>
+                        </div>
+
                     </div>
 
                     <div class="profile-row">
@@ -33,95 +41,170 @@
                     </div>
 
                     <div class="character-actions">
+
                         <input id="profileName" class="profile-input" type="text" placeholder="New character">
-                        <button class="btn btn-primary" id="addProfile">Add</button>
-                        <button class="btn" id="exportProfiles" type="button">Export</button>
-                        <button class="btn" id="importProfiles" type="button">Import</button>
-                        <button class="btn btn-danger" id="deleteAllProfiles" type="button">Delete All</button>
-                        <button class="btn btn-danger" id="deleteProfile" title="Delete current character"
-                            type="button">Delete Character</button>
+
+                        <button class="btn btn-primary" id="addProfile" type="button">
+                            Add
+                        </button>
+
+                        <button class="btn" id="exportProfiles" type="button">
+                            Export
+                        </button>
+
+                        <button class="btn" id="importProfiles" type="button">
+                            Import
+                        </button>
+
+                        <button class="btn btn-danger" id="deleteAllProfiles" type="button">
+                            Delete All
+                        </button>
+
+                        <button class="btn btn-danger" id="deleteProfile" type="button"
+                            title="Delete current character">
+                            Delete Character
+                        </button>
+
                     </div>
 
                     <div class="progress">
+
                         <div class="progress-meta">
                             <span id="progressText">0 / 0</span>
                             <span id="progressPercent">0%</span>
                         </div>
+
                         <div class="progress-bar">
                             <div class="progress-fill" id="progressFill"></div>
                         </div>
+
                     </div>
+
                 </div>
 
                 <div class="scroll-bar" id="scrollBar">
-                    <strong id="scrollCharacter">No character</strong>
+
+                    <strong id="scrollCharacter">
+                        No character
+                    </strong>
 
                     <div class="scroll-progress">
-                        <span id="scrollProgress">0 / 0</span>
+
+                        <span id="scrollProgress">
+                            0 / 0
+                        </span>
+
                         <div class="progress-bar">
                             <div class="progress-fill" id="scrollProgressFill"></div>
                         </div>
+
                     </div>
 
-                    <button class="btn" id="scrollTocButton">ToC</button>
+                    <button class="btn" id="scrollSsfButton" type="button">
+                        SSF
+                    </button>
+
+                    <button class="btn" id="scrollTocButton" type="button">
+                        ToC
+                    </button>
+
                 </div>
+
             </header>
 
             <main id="campaign"></main>
 
             <div class="data-options">
-                <button class="btn" id="uploadButton">Load acts.json</button>
+
+                <button class="btn" id="uploadButton" type="button">
+                    Load acts.json
+                </button>
+
             </div>
 
             <input id="jsonUpload" type="file" accept=".json,application/json" hidden>
+
             <input id="profilesUpload" type="file" accept=".json,application/json" hidden>
-        </section>
 
-        <section id="ssf" class="view">
-            <header class="quick-header">
-                <h1>SSF Quick Reference</h1>
+            <input id="ssfUpload" type="file" accept=".json,application/json" hidden>
 
-                <div class="search-wrap">
-                    <input id="search" type="search" autocomplete="off" spellcheck="false"
-                        placeholder="Search SSF guide..." aria-label="Search SSF guide">
-                    <button class="clear-search" id="clearSearch" type="button">×</button>
-                </div>
-
-                <div class="search-info" id="searchInfo"></div>
-            </header>
-
-            <main id="ssfContent"></main>
-
-            <div class="empty" id="ssfEmpty">No matching entries.</div>
         </section>
 
     </div>
 
+
+    <!-- Campaign ToC -->
+
     <div class="sheet-backdrop" id="sheetBackdrop"></div>
 
     <aside class="sheet" id="sheet">
+
         <div class="sheet-header">
+
             <strong>Campaign</strong>
-            <button class="btn" id="closeSheet">Close</button>
+
+            <button class="btn" id="closeSheet" type="button">
+                Close
+            </button>
+
         </div>
 
         <div class="sheet-content" id="toc"></div>
+
     </aside>
 
+
+    <!-- SSF Reference -->
+
+    <div class="sheet-backdrop" id="ssfBackdrop"></div>
+
+    <aside class="sheet sheet-left" id="ssfSheet">
+
+        <div class="sheet-header">
+
+            <strong>SSF Reference</strong>
+
+            <div class="sheet-header-actions">
+
+                <button class="btn" id="loadSsfButton" type="button">
+                    Load JSON
+                </button>
+
+                <button class="btn" id="closeSsf" type="button" aria-label="Close SSF reference">
+                    ×
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="ssf-controls">
+
+            <div class="search-wrap">
+                <input id="ssfSearch" type="search" autocomplete="off" spellcheck="false"
+                    placeholder="Search SSF reference..." aria-label="Search SSF reference">
+
+                <button class="clear-search" id="clearSsfSearch" type="button" aria-label="Clear search">
+                    ×
+                </button>
+            </div>
+
+            <div class="search-info" id="ssfSearchInfo"></div>
+
+        </div>
+
+        <div class="sheet-content" id="ssfContent"></div>
+
+        <div class="empty" id="ssfEmpty" style="display:none">
+            No SSF reference data loaded.
+        </div>
+
+    </aside>
+
+
     <script>
+
         const $ = id => document.getElementById(id);
-
-        document.querySelectorAll(".nav-btn").forEach(button => {
-            button.addEventListener("click", () => {
-                document.querySelectorAll(".nav-btn").forEach(btn => {
-                    btn.classList.toggle("active", btn === button);
-                });
-
-                document.querySelectorAll(".view").forEach(view => {
-                    view.classList.toggle("active", view.id === button.dataset.view);
-                });
-            });
-        });
 
         const escapeHtml = value =>
             String(value).replace(/[&<>"']/g, character => ({
@@ -132,32 +215,74 @@
                 "'": "&#039;"
             }[character]));
 
-        /* Rush to Maps */
+
+        /*
+         * ------------------------------------------------------------
+         * Rush to Maps
+         * ------------------------------------------------------------
+         */
+
         (() => {
+
             const STORAGE_KEY = "poe2-rush-to-maps";
 
             let campaignData = null;
             let tasks = [];
+
             let state = loadState();
 
+
+            /*
+             * State
+             */
+
             function loadState() {
+
                 try {
-                    const saved = localStorage.getItem(STORAGE_KEY);
+
+                    const saved =
+                        localStorage.getItem(STORAGE_KEY);
 
                     if (saved) {
-                        const parsed = JSON.parse(saved);
 
-                        if (parsed && Array.isArray(parsed.profiles)) {
+                        const parsed =
+                            JSON.parse(saved);
+
+                        if (
+                            parsed &&
+                            Array.isArray(parsed.profiles)
+                        ) {
+
+                            const activeProfile =
+                                Number.isInteger(
+                                    parsed.activeProfile
+                                )
+                                    ? parsed.activeProfile
+                                    : 0;
+
                             return {
                                 profiles: parsed.profiles,
-                                activeProfile: Number.isInteger(parsed.activeProfile)
-                                    ? parsed.activeProfile
-                                    : 0
+                                activeProfile:
+                                    Math.max(
+                                        0,
+                                        Math.min(
+                                            activeProfile,
+                                            Math.max(
+                                                0,
+                                                parsed.profiles.length - 1
+                                            )
+                                        )
+                                    )
                             };
                         }
                     }
+
                 } catch (error) {
-                    console.warn("Could not load saved state:", error);
+
+                    console.warn(
+                        "Could not load saved state:",
+                        error
+                    );
                 }
 
                 return {
@@ -166,31 +291,63 @@
                 };
             }
 
+
             function saveState() {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+
+                localStorage.setItem(
+                    STORAGE_KEY,
+                    JSON.stringify(state)
+                );
             }
+
 
             function activeProfile() {
-                return state.profiles[state.activeProfile] || null;
+
+                return (
+                    state.profiles[state.activeProfile] ||
+                    null
+                );
             }
 
+
+            /*
+             * Campaign data
+             */
+
             function getTasks() {
+
                 if (!campaignData) {
                     return [];
                 }
 
                 const result = [];
 
-                for (const section of campaignData.sections || []) {
-                    for (const text of section.tasks || []) {
+                for (
+                    const section of
+                    campaignData.sections || []
+                ) {
+
+                    for (
+                        const text of
+                        section.tasks || []
+                    ) {
+
                         result.push({
                             text,
                             section
                         });
                     }
 
-                    for (const subsection of section.sections || []) {
-                        for (const text of subsection.tasks || []) {
+                    for (
+                        const subsection of
+                        section.sections || []
+                    ) {
+
+                        for (
+                            const text of
+                            subsection.tasks || []
+                        ) {
+
                             result.push({
                                 text,
                                 section: subsection,
@@ -203,54 +360,130 @@
                 return result;
             }
 
+
             function refreshTasks() {
+
                 tasks = getTasks();
             }
 
+
+            /*
+             * Character rendering
+             */
+
             function renderProfiles() {
-                const select = $("profileSelect");
+
+                const select =
+                    $("profileSelect");
+
                 select.innerHTML = "";
 
-                state.profiles.forEach((profile, index) => {
-                    const total = tasks.length;
-                    const completed = Math.min(profile.currentTask || 0, total);
-                    const percent = total
-                        ? Math.round(completed / total * 100)
-                        : 0;
+                state.profiles.forEach(
+                    (profile, index) => {
 
-                    const option = document.createElement("option");
+                        const total = tasks.length;
 
-                    option.value = index;
-                    option.textContent = `${profile.name} (${percent}%)`;
-                    option.selected = index === state.activeProfile;
+                        const completed =
+                            Math.min(
+                                profile.currentTask || 0,
+                                total
+                            );
 
-                    select.appendChild(option);
-                });
+                        const percent =
+                            total
+                                ? Math.round(
+                                    completed /
+                                    total *
+                                    100
+                                )
+                                : 0;
+
+                        const option =
+                            document.createElement(
+                                "option"
+                            );
+
+                        option.value = index;
+
+                        option.textContent =
+                            `${profile.name} (${percent}%)`;
+
+                        option.selected =
+                            index ===
+                            state.activeProfile;
+
+                        select.appendChild(option);
+                    }
+                );
 
                 if (!state.profiles.length) {
-                    const option = document.createElement("option");
 
-                    option.textContent = "No character";
+                    const option =
+                        document.createElement(
+                            "option"
+                        );
+
+                    option.textContent =
+                        "No character";
+
                     option.value = "";
 
                     select.appendChild(option);
                 }
             }
 
+
+            function renderProgress() {
+
+                const completed =
+                    Math.min(
+                        activeProfile()?.currentTask || 0,
+                        tasks.length
+                    );
+
+                const percent =
+                    tasks.length
+                        ? Math.round(
+                            completed /
+                            tasks.length *
+                            100
+                        )
+                        : 0;
+
+                $("progressText").textContent =
+                    `${completed} / ${tasks.length}`;
+
+                $("progressPercent").textContent =
+                    `${percent}%`;
+
+                $("progressFill").style.width =
+                    `${percent}%`;
+            }
+
+
             function renderScrollBar() {
-                const profile = activeProfile();
+
+                const profile =
+                    activeProfile();
 
                 $("scrollCharacter").textContent =
-                    profile?.name || "No character";
+                    profile?.name ||
+                    "No character";
 
-                const completed = Math.min(
-                    profile?.currentTask || 0,
+                const completed =
+                    Math.min(
+                        profile?.currentTask || 0,
+                        tasks.length
+                    );
+
+                const percent =
                     tasks.length
-                );
-
-                const percent = tasks.length
-                    ? Math.round(completed / tasks.length * 100)
-                    : 0;
+                        ? Math.round(
+                            completed /
+                            tasks.length *
+                            100
+                        )
+                        : 0;
 
                 $("scrollProgress").textContent =
                     `${completed} / ${tasks.length}`;
@@ -259,18 +492,30 @@
                     `${percent}%`;
             }
 
+
             function updateScrollBar() {
+
                 $("scrollBar").classList.toggle(
                     "visible",
                     window.scrollY > 140
                 );
             }
 
+
+            /*
+             * Character actions
+             */
+
             function addProfile() {
-                const input = $("profileName");
-                const name = input.value.trim();
+
+                const input =
+                    $("profileName");
+
+                const name =
+                    input.value.trim();
 
                 if (!name) {
+
                     input.focus();
                     return;
                 }
@@ -281,101 +526,55 @@
                     notes: {}
                 });
 
-                state.activeProfile = state.profiles.length - 1;
+                state.activeProfile =
+                    state.profiles.length - 1;
+
                 input.value = "";
 
                 saveState();
                 render();
+
+                scrollToCurrentTask(false);
             }
 
+
             function deleteProfile() {
-                const profile = activeProfile();
+
+                const profile =
+                    activeProfile();
 
                 if (!profile) {
                     return;
                 }
 
-                if (!confirm(`Delete character "${profile.name}"?`)) {
+                if (
+                    !confirm(
+                        `Delete character "${profile.name}"?`
+                    )
+                ) {
                     return;
                 }
 
-                state.profiles.splice(state.activeProfile, 1);
-                state.activeProfile = Math.max(0, state.activeProfile - 1);
+                state.profiles.splice(
+                    state.activeProfile,
+                    1
+                );
+
+                state.activeProfile =
+                    Math.max(
+                        0,
+                        state.activeProfile - 1
+                    );
 
                 saveState();
                 render();
-            }
-            function exportProfiles() {
-                const exportData = {
-                    version: 1,
-                    exportedAt: new Date().toISOString(),
-                    profiles: state.profiles,
-                    activeProfile: state.activeProfile
-                };
 
-                const blob = new Blob(
-                    [JSON.stringify(exportData, null, 2)],
-                    { type: "application/json" }
-                );
-
-                const url = URL.createObjectURL(blob);
-                const link = document.createElement("a");
-
-                link.href = url;
-                link.download = "poe2-characters.json";
-                link.click();
-
-                URL.revokeObjectURL(url);
+                scrollToCurrentTask(false);
             }
 
-            async function importProfiles(file) {
-                try {
-                    const imported = JSON.parse(await file.text());
-
-                    if (!imported || !Array.isArray(imported.profiles)) {
-                        throw new Error(
-                            "Invalid character file: expected a profiles array."
-                        );
-                    }
-
-                    if (
-                        !imported.profiles.every(profile =>
-                            profile &&
-                            typeof profile.name === "string" &&
-                            Number.isInteger(profile.currentTask)
-                        )
-                    ) {
-                        throw new Error("Invalid character data.");
-                    }
-
-                    if (
-                        !confirm(
-                            "Importing characters will replace your current characters. Continue?"
-                        )
-                    ) {
-                        return;
-                    }
-
-                    state.profiles = imported.profiles;
-                    state.activeProfile =
-                        Number.isInteger(imported.activeProfile) &&
-                            imported.activeProfile >= 0 &&
-                            imported.activeProfile < state.profiles.length
-                            ? imported.activeProfile
-                            : 0;
-
-                    saveState();
-                    render();
-
-                } catch (error) {
-                    alert(
-                        "Could not import characters:\n\n" +
-                        error.message
-                    );
-                }
-            }
 
             function deleteAllProfiles() {
+
                 if (!state.profiles.length) {
                     return;
                 }
@@ -395,176 +594,485 @@
                 render();
             }
 
-            function setCurrentTask(index) {
-                const profile = activeProfile();
 
-                if (!profile || !tasks[index]) {
+            function exportProfiles() {
+
+                const exportData = {
+                    version: 1,
+                    exportedAt:
+                        new Date().toISOString(),
+                    profiles: state.profiles,
+                    activeProfile:
+                        state.activeProfile
+                };
+
+                const blob =
+                    new Blob(
+                        [
+                            JSON.stringify(
+                                exportData,
+                                null,
+                                2
+                            )
+                        ],
+                        {
+                            type:
+                                "application/json"
+                        }
+                    );
+
+                const url =
+                    URL.createObjectURL(blob);
+
+                const link =
+                    document.createElement("a");
+
+                link.href = url;
+                link.download =
+                    "poe2-characters.json";
+
+                link.click();
+
+                URL.revokeObjectURL(url);
+            }
+
+
+            async function importProfiles(file) {
+
+                try {
+
+                    const imported =
+                        JSON.parse(
+                            await file.text()
+                        );
+
+                    if (
+                        !imported ||
+                        !Array.isArray(
+                            imported.profiles
+                        )
+                    ) {
+
+                        throw new Error(
+                            "Invalid character file: expected a profiles array."
+                        );
+                    }
+
+                    if (
+                        !imported.profiles.every(
+                            profile =>
+                                profile &&
+                                typeof profile.name ===
+                                "string" &&
+                                Number.isInteger(
+                                    profile.currentTask
+                                )
+                        )
+                    ) {
+
+                        throw new Error(
+                            "Invalid character data."
+                        );
+                    }
+
+                    if (
+                        !confirm(
+                            "Importing characters will replace your current characters. Continue?"
+                        )
+                    ) {
+                        return;
+                    }
+
+                    state.profiles =
+                        imported.profiles;
+
+                    state.activeProfile =
+                        Number.isInteger(
+                            imported.activeProfile
+                        ) &&
+                            imported.activeProfile >= 0 &&
+                            imported.activeProfile <
+                            state.profiles.length
+                            ? imported.activeProfile
+                            : 0;
+
+                    saveState();
+                    render();
+
+                    scrollToCurrentTask(false);
+
+                } catch (error) {
+
+                    alert(
+                        "Could not import characters:\n\n" +
+                        error.message
+                    );
+                }
+            }
+
+
+            /*
+             * Current task
+             */
+
+            function setCurrentTask(index) {
+
+                const profile =
+                    activeProfile();
+
+                if (
+                    !profile ||
+                    !tasks[index]
+                ) {
                     return;
                 }
 
-                profile.currentTask = index;
+                profile.currentTask =
+                    index;
 
                 saveState();
                 render();
 
-                requestAnimationFrame(() => scrollToTask(index));
+                requestAnimationFrame(
+                    () => scrollToTask(index)
+                );
             }
+
 
             function nextTask(index) {
-                const profile = activeProfile();
 
-                if (!profile || !tasks[index]) {
+                const profile =
+                    activeProfile();
+
+                if (
+                    !profile ||
+                    !tasks[index]
+                ) {
                     return;
                 }
 
-                profile.currentTask = Math.min(index + 1, tasks.length);
+                profile.currentTask =
+                    Math.min(
+                        index + 1,
+                        tasks.length
+                    );
 
                 saveState();
                 render();
 
-                requestAnimationFrame(() => {
-                    scrollToTask(profile.currentTask);
-                });
+                requestAnimationFrame(
+                    () =>
+                        scrollToTask(
+                            profile.currentTask
+                        )
+                );
             }
 
+
             function previousTask(index) {
-                const profile = activeProfile();
+
+                const profile =
+                    activeProfile();
 
                 if (!profile) {
                     return;
                 }
 
-                profile.currentTask = Math.max(0, index - 1);
+                profile.currentTask =
+                    Math.max(
+                        0,
+                        index - 1
+                    );
 
                 saveState();
                 render();
 
-                requestAnimationFrame(() => {
-                    scrollToTask(profile.currentTask);
-                });
+                requestAnimationFrame(
+                    () =>
+                        scrollToTask(
+                            profile.currentTask
+                        )
+                );
             }
 
-            function scrollToTask(index) {
+
+            function scrollToTask(
+                index,
+                smooth = true
+            ) {
+
                 document
-                    .querySelector(`[data-task-index="${index}"]`)
+                    .querySelector(
+                        `[data-task-index="${index}"]`
+                    )
                     ?.scrollIntoView({
-                        behavior: "smooth",
+                        behavior:
+                            smooth
+                                ? "smooth"
+                                : "auto",
                         block: "center"
                     });
             }
 
-            function saveNote(index, value) {
-                const profile = activeProfile();
+
+            function scrollToCurrentTask(
+                smooth = true
+            ) {
+
+                const profile =
+                    activeProfile();
+
+                if (!profile) {
+                    return;
+                }
+
+                requestAnimationFrame(
+                    () =>
+                        scrollToTask(
+                            profile.currentTask,
+                            smooth
+                        )
+                );
+            }
+
+
+            /*
+             * Notes
+             */
+
+            function saveNote(
+                index,
+                value
+            ) {
+
+                const profile =
+                    activeProfile();
 
                 if (!profile) {
                     return;
                 }
 
                 profile.notes ??= {};
-                profile.notes[index] = value;
+
+                profile.notes[index] =
+                    value;
 
                 saveState();
             }
 
-            function updateTaskNoteDisplay(task, value) {
-                task.querySelector(".task-note-display")?.remove();
+
+            function updateTaskNoteDisplay(
+                task,
+                value
+            ) {
+
+                task
+                    .querySelector(
+                        ".task-note-display"
+                    )
+                    ?.remove();
 
                 if (!value.trim()) {
                     return;
                 }
 
-                const note = document.createElement("small");
-                note.className = "task-note-display";
+                const note =
+                    document.createElement(
+                        "small"
+                    );
 
-                const pencil = document.createElement("span");
-                pencil.className = "task-note-pencil";
-                pencil.textContent = "✎ ";
+                note.className =
+                    "task-note-display";
+
+                const pencil =
+                    document.createElement(
+                        "span"
+                    );
+
+                pencil.className =
+                    "task-note-pencil";
+
+                pencil.textContent =
+                    "✎ ";
 
                 note.append(
                     pencil,
-                    document.createTextNode(value.trim())
+                    document.createTextNode(
+                        value.trim()
+                    )
                 );
 
-                const actions = task.querySelector(".task-secondary-actions");
+                const actions =
+                    task.querySelector(
+                        ".task-secondary-actions"
+                    );
 
-                task.insertBefore(note, actions);
+                if (actions) {
+                    task.insertBefore(
+                        note,
+                        actions
+                    );
+                } else {
+                    task.appendChild(note);
+                }
             }
 
-            function editTaskNote(task, index, container) {
-                const profile = activeProfile();
+
+            function editTaskNote(
+                task,
+                index,
+                container
+            ) {
+
+                const profile =
+                    activeProfile();
 
                 if (!profile) {
                     return;
                 }
 
-                const savedNote = profile.notes?.[index] || "";
+                const savedNote =
+                    profile.notes?.[index] ||
+                    "";
 
                 container.innerHTML = "";
 
-                const textarea = document.createElement("textarea");
-
-                textarea.className = "task-note";
-                textarea.value = savedNote;
-
-                const saveButton = document.createElement("button");
-
-                saveButton.type = "button";
-                saveButton.className = "task-note-save";
-                saveButton.textContent = "Save changes";
-
-                saveButton.addEventListener("click", event => {
-                    event.stopPropagation();
-
-                    saveNote(index, textarea.value);
-
-                    container.innerHTML = "";
-
-                    const setCurrent = document.createElement("button");
-
-                    setCurrent.type = "button";
-                    setCurrent.className = "task-action-subtle";
-                    setCurrent.textContent = "Set current";
-
-                    setCurrent.addEventListener("click", event => {
-                        event.stopPropagation();
-                        setCurrentTask(index);
-                    });
-
-                    const editNotes = document.createElement("button");
-
-                    editNotes.type = "button";
-                    editNotes.className = "task-action-subtle";
-                    editNotes.textContent =
-                        textarea.value.trim()
-                            ? "Edit notes"
-                            : "Add note";
-
-                    editNotes.addEventListener("click", event => {
-                        event.stopPropagation();
-                        editTaskNote(task, index, container);
-                    });
-
-                    container.append(setCurrent, editNotes);
-
-                    updateTaskNoteDisplay(
-                        task,
-                        textarea.value
+                const textarea =
+                    document.createElement(
+                        "textarea"
                     );
-                });
 
-                container.append(textarea, saveButton);
+                textarea.className =
+                    "task-note";
 
-                requestAnimationFrame(() => {
-                    textarea.focus();
-                    textarea.setSelectionRange(
-                        textarea.value.length,
-                        textarea.value.length
+                textarea.value =
+                    savedNote;
+
+                const saveButton =
+                    document.createElement(
+                        "button"
                     );
-                });
+
+                saveButton.type =
+                    "button";
+
+                saveButton.className =
+                    "task-note-save";
+
+                saveButton.textContent =
+                    "Save changes";
+
+                saveButton.addEventListener(
+                    "click",
+                    event => {
+
+                        event.stopPropagation();
+
+                        saveNote(
+                            index,
+                            textarea.value
+                        );
+
+                        container.innerHTML = "";
+
+                        const setCurrent =
+                            document.createElement(
+                                "button"
+                            );
+
+                        setCurrent.type =
+                            "button";
+
+                        setCurrent.className =
+                            "task-action-subtle";
+
+                        setCurrent.textContent =
+                            "Set current";
+
+                        setCurrent.addEventListener(
+                            "click",
+                            event => {
+
+                                event.stopPropagation();
+
+                                setCurrentTask(
+                                    index
+                                );
+                            }
+                        );
+
+                        const editNotes =
+                            document.createElement(
+                                "button"
+                            );
+
+                        editNotes.type =
+                            "button";
+
+                        editNotes.className =
+                            "task-action-subtle";
+
+                        editNotes.textContent =
+                            textarea.value.trim()
+                                ? "Edit notes"
+                                : "Add note";
+
+                        editNotes.addEventListener(
+                            "click",
+                            event => {
+
+                                event.stopPropagation();
+
+                                editTaskNote(
+                                    task,
+                                    index,
+                                    container
+                                );
+                            }
+                        );
+
+                        container.append(
+                            setCurrent,
+                            editNotes
+                        );
+
+                        updateTaskNoteDisplay(
+                            task,
+                            textarea.value
+                        );
+                    }
+                );
+
+                container.append(
+                    textarea,
+                    saveButton
+                );
+
+                requestAnimationFrame(
+                    () => {
+
+                        textarea.focus();
+
+                        textarea.setSelectionRange(
+                            textarea.value.length,
+                            textarea.value.length
+                        );
+                    }
+                );
             }
 
-            function sectionContainsCurrent(section, startIndex) {
-                const current = activeProfile()?.currentTask;
+
+            /*
+             * Campaign rendering
+             */
+
+            function sectionContainsCurrent(
+                section,
+                startIndex
+            ) {
+
+                const current =
+                    activeProfile()?.currentTask;
 
                 if (current === undefined) {
                     return false;
@@ -572,15 +1080,30 @@
 
                 let index = startIndex;
 
-                for (const task of section.tasks || []) {
+                for (
+                    const task of
+                    section.tasks || []
+                ) {
+
                     if (index++ === current) {
                         return true;
                     }
                 }
 
-                for (const subsection of section.sections || []) {
-                    for (const task of subsection.tasks || []) {
-                        if (index++ === current) {
+                for (
+                    const subsection of
+                    section.sections || []
+                ) {
+
+                    for (
+                        const task of
+                        subsection.tasks || []
+                    ) {
+
+                        if (
+                            index++ ===
+                            current
+                        ) {
                             return true;
                         }
                     }
@@ -589,54 +1112,111 @@
                 return false;
             }
 
-            function renderSection(section, startIndex) {
-                const sectionElement = document.createElement("section");
 
-                sectionElement.className = "section";
+            function renderSection(
+                section,
+                startIndex
+            ) {
 
-                if (sectionContainsCurrent(section, startIndex)) {
-                    sectionElement.classList.add("open");
+                const sectionElement =
+                    document.createElement(
+                        "section"
+                    );
+
+                sectionElement.className =
+                    "section";
+
+                if (
+                    sectionContainsCurrent(
+                        section,
+                        startIndex
+                    )
+                ) {
+
+                    sectionElement.classList.add(
+                        "open"
+                    );
                 }
 
-                const header = document.createElement("button");
+                const header =
+                    document.createElement(
+                        "button"
+                    );
 
-                header.className = "section-header";
+                header.className =
+                    "section-header";
+
+                header.type = "button";
 
                 header.innerHTML = `
-            <span class="section-color"></span>
-            <span class="section-title">${escapeHtml(section.title)}</span>
-            <span class="section-count"></span>
-            <span class="section-chevron">›</span>
-        `;
+                    <span class="section-color"></span>
+                    <span class="section-title">
+                        ${escapeHtml(section.title)}
+                    </span>
+                    <span class="section-count"></span>
+                    <span class="section-chevron">›</span>
+                `;
 
-                header.addEventListener("click", () => {
-                    sectionElement.classList.toggle("open");
-                });
+                header.addEventListener(
+                    "click",
+                    () => {
 
-                const body = document.createElement("div");
+                        sectionElement.classList.toggle(
+                            "open"
+                        );
+                    }
+                );
 
-                body.className = "section-body";
+                const body =
+                    document.createElement(
+                        "div"
+                    );
+
+                body.className =
+                    "section-body";
 
                 let index = startIndex;
                 let count = 0;
 
-                for (const text of section.tasks || []) {
+                for (
+                    const text of
+                    section.tasks || []
+                ) {
+
                     body.appendChild(
-                        createTaskElement(text, index++, section)
+                        createTaskElement(
+                            text,
+                            index++,
+                            section
+                        )
                     );
 
                     count++;
                 }
 
-                for (const subsection of section.sections || []) {
-                    const title = document.createElement("div");
+                for (
+                    const subsection of
+                    section.sections || []
+                ) {
 
-                    title.className = "subsection-title";
-                    title.textContent = subsection.title;
+                    const title =
+                        document.createElement(
+                            "div"
+                        );
+
+                    title.className =
+                        "subsection-title";
+
+                    title.textContent =
+                        subsection.title;
 
                     body.appendChild(title);
 
-                    for (const text of subsection.tasks || []) {
+                    for (
+                        const text of
+                        subsection.tasks || []
+                    ) {
+
                         body.appendChild(
                             createTaskElement(
                                 text,
@@ -650,10 +1230,17 @@
                     }
                 }
 
-                header.querySelector(".section-count").textContent =
+                header
+                    .querySelector(
+                        ".section-count"
+                    )
+                    .textContent =
                     `${count} task${count === 1 ? "" : "s"}`;
 
-                sectionElement.append(header, body);
+                sectionElement.append(
+                    header,
+                    body
+                );
 
                 return {
                     element: sectionElement,
@@ -661,138 +1248,260 @@
                 };
             }
 
+
             function createTaskElement(
                 text,
                 index,
                 section,
                 parentSection = null
             ) {
-                const profile = activeProfile();
+
+                const profile =
+                    activeProfile();
 
                 const current =
-                    profile?.currentTask === index;
+                    profile?.currentTask ===
+                    index;
 
                 const completed =
                     !!profile &&
-                    index < profile.currentTask;
+                    index <
+                    profile.currentTask;
 
                 const future =
                     !!profile &&
-                    index > profile.currentTask;
+                    index >
+                    profile.currentTask;
 
                 const savedNote =
-                    profile?.notes?.[index] || "";
+                    profile?.notes?.[index] ||
+                    "";
 
-                const task = document.createElement("article");
+                const task =
+                    document.createElement(
+                        "article"
+                    );
 
-                task.className = "task";
-                task.dataset.taskIndex = index;
+                task.className =
+                    "task";
+
+                task.dataset.taskIndex =
+                    index;
 
                 if (current) {
-                    task.classList.add("current");
+                    task.classList.add(
+                        "current"
+                    );
                 }
 
                 if (completed) {
-                    task.classList.add("completed");
+                    task.classList.add(
+                        "completed"
+                    );
                 }
 
                 if (future) {
-                    task.classList.add("future");
+                    task.classList.add(
+                        "future"
+                    );
                 }
 
-                const heading = document.createElement("div");
+                const heading =
+                    document.createElement(
+                        "div"
+                    );
 
-                heading.className = "task-heading";
+                heading.className =
+                    "task-heading";
 
-                const checkbox = document.createElement("input");
+                const checkbox =
+                    document.createElement(
+                        "input"
+                    );
 
-                checkbox.type = "checkbox";
-                checkbox.className = "task-check";
-                checkbox.checked = completed;
-                checkbox.disabled = true;
+                checkbox.type =
+                    "checkbox";
 
-                const textElement = document.createElement("div");
+                checkbox.className =
+                    "task-check";
 
-                textElement.className = "task-text";
+                checkbox.checked =
+                    completed;
+
+                checkbox.disabled =
+                    true;
+
+                const textElement =
+                    document.createElement(
+                        "div"
+                    );
+
+                textElement.className =
+                    "task-text";
 
                 if (current) {
-                    const label = document.createElement("div");
 
-                    label.className = "current-label";
-                    label.textContent = "Current task";
+                    const label =
+                        document.createElement(
+                            "div"
+                        );
 
-                    textElement.appendChild(label);
+                    label.className =
+                        "current-label";
+
+                    label.textContent =
+                        "Current task";
+
+                    textElement.appendChild(
+                        label
+                    );
                 }
 
-                const taskText = document.createElement("div");
+                const taskText =
+                    document.createElement(
+                        "div"
+                    );
 
-                const match = text.match(/^(.+?)\s+-\s+(.*)$/);
+                const match =
+                    text.match(
+                        /^(.+?)\s+-\s+(.*)$/
+                    );
 
                 if (match) {
+
                     taskText.innerHTML =
                         `<strong>${escapeHtml(match[1])}</strong> - ${escapeHtml(match[2])}`;
+
                 } else {
-                    taskText.textContent = text;
+
+                    taskText.textContent =
+                        text;
                 }
 
-                textElement.appendChild(taskText);
+                textElement.appendChild(
+                    taskText
+                );
 
-                heading.append(checkbox, textElement);
-                task.appendChild(heading);
+                heading.append(
+                    checkbox,
+                    textElement
+                );
+
+                task.appendChild(
+                    heading
+                );
+
 
                 if (current) {
+
                     const textarea =
-                        document.createElement("textarea");
+                        document.createElement(
+                            "textarea"
+                        );
 
-                    textarea.className = "task-note";
-                    textarea.placeholder = "Note...";
-                    textarea.value = savedNote;
+                    textarea.className =
+                        "task-note";
 
-                    textarea.addEventListener("input", () => {
-                        saveNote(index, textarea.value);
-                    });
+                    textarea.placeholder =
+                        "Note...";
 
-                    task.appendChild(textarea);
-                } else if (savedNote.trim()) {
-                    const note = document.createElement("small");
+                    textarea.value =
+                        savedNote;
 
-                    note.className = "task-note-display";
+                    textarea.addEventListener(
+                        "input",
+                        () => {
 
-                    const pencil = document.createElement("span");
+                            saveNote(
+                                index,
+                                textarea.value
+                            );
+                        }
+                    );
 
-                    pencil.className = "task-note-pencil";
-                    pencil.textContent = "✎ ";
+                    task.appendChild(
+                        textarea
+                    );
+
+                } else if (
+                    savedNote.trim()
+                ) {
+
+                    const note =
+                        document.createElement(
+                            "small"
+                        );
+
+                    note.className =
+                        "task-note-display";
+
+                    const pencil =
+                        document.createElement(
+                            "span"
+                        );
+
+                    pencil.className =
+                        "task-note-pencil";
+
+                    pencil.textContent =
+                        "✎ ";
 
                     note.append(
                         pencil,
-                        document.createTextNode(savedNote.trim())
+                        document.createTextNode(
+                            savedNote.trim()
+                        )
                     );
 
-                    task.appendChild(note);
+                    task.appendChild(
+                        note
+                    );
                 }
 
+
                 if (!current) {
+
                     const secondary =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
 
                     secondary.className =
                         "task-secondary-actions";
 
                     const setCurrent =
-                        document.createElement("button");
+                        document.createElement(
+                            "button"
+                        );
+
+                    setCurrent.type =
+                        "button";
 
                     setCurrent.className =
                         "task-action-subtle set-current";
 
-                    setCurrent.textContent = "Set current";
+                    setCurrent.textContent =
+                        "Set current";
 
-                    setCurrent.addEventListener("click", event => {
-                        event.stopPropagation();
-                        setCurrentTask(index);
-                    });
+                    setCurrent.addEventListener(
+                        "click",
+                        event => {
+
+                            event.stopPropagation();
+
+                            setCurrentTask(
+                                index
+                            );
+                        }
+                    );
 
                     const editNotes =
-                        document.createElement("button");
+                        document.createElement(
+                            "button"
+                        );
+
+                    editNotes.type =
+                        "button";
 
                     editNotes.className =
                         "task-action-subtle";
@@ -802,111 +1511,188 @@
                             ? "Edit notes"
                             : "Add note";
 
-                    editNotes.addEventListener("click", event => {
-                        event.stopPropagation();
-                        editTaskNote(
-                            task,
-                            index,
-                            secondary
-                        );
-                    });
+                    editNotes.addEventListener(
+                        "click",
+                        event => {
+
+                            event.stopPropagation();
+
+                            editTaskNote(
+                                task,
+                                index,
+                                secondary
+                            );
+                        }
+                    );
 
                     secondary.append(
                         setCurrent,
                         editNotes
                     );
 
-                    task.appendChild(secondary);
+                    task.appendChild(
+                        secondary
+                    );
                 }
 
-                if (current) {
-                    const actions =
-                        document.createElement("div");
 
-                    actions.className = "task-actions";
+                if (current) {
+
+                    const actions =
+                        document.createElement(
+                            "div"
+                        );
+
+                    actions.className =
+                        "task-actions";
 
                     const back =
-                        document.createElement("button");
+                        document.createElement(
+                            "button"
+                        );
 
-                    back.className = "btn";
-                    back.textContent = "Not yet";
+                    back.type =
+                        "button";
 
-                    back.addEventListener("click", () => {
-                        previousTask(index);
-                    });
+                    back.className =
+                        "btn";
+
+                    back.textContent =
+                        "Not yet";
+
+                    back.addEventListener(
+                        "click",
+                        () =>
+                            previousTask(index)
+                    );
 
                     const next =
-                        document.createElement("button");
+                        document.createElement(
+                            "button"
+                        );
 
-                    next.className = "btn next-btn";
+                    next.type =
+                        "button";
+
+                    next.className =
+                        "btn next-btn";
 
                     next.textContent =
-                        index === tasks.length - 1
+                        index ===
+                            tasks.length - 1
                             ? "Finish"
                             : "Next";
 
-                    next.addEventListener("click", () => {
-                        nextTask(index);
-                    });
+                    next.addEventListener(
+                        "click",
+                        () =>
+                            nextTask(index)
+                    );
 
-                    actions.append(back, next);
+                    actions.append(
+                        back,
+                        next
+                    );
 
                     const disclaimer =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
 
-                    disclaimer.className = "disclaimer";
+                    disclaimer.className =
+                        "disclaimer";
+
                     disclaimer.textContent =
                         "Next will automatically mark this task complete.";
 
-                    task.append(actions, disclaimer);
+                    task.append(
+                        actions,
+                        disclaimer
+                    );
                 }
 
                 return task;
             }
 
+
             function renderCampaign() {
-                const container = $("campaign");
+
+                const container =
+                    $("campaign");
 
                 container.innerHTML = "";
 
                 if (!campaignData) {
-                    const empty =
-                        document.createElement("div");
 
-                    empty.className = "empty";
+                    const empty =
+                        document.createElement(
+                            "div"
+                        );
+
+                    empty.className =
+                        "empty";
+
                     empty.textContent =
                         "Campaign data not loaded.";
 
-                    container.appendChild(empty);
+                    container.appendChild(
+                        empty
+                    );
+
                     return;
                 }
 
                 if (!activeProfile()) {
-                    const empty =
-                        document.createElement("div");
 
-                    empty.className = "empty";
+                    const empty =
+                        document.createElement(
+                            "div"
+                        );
+
+                    empty.className =
+                        "empty";
+
                     empty.textContent =
                         "Create a character above to start.";
 
-                    container.appendChild(empty);
+                    container.appendChild(
+                        empty
+                    );
+
                     return;
                 }
 
                 let index = 0;
 
-                for (const section of campaignData.sections || []) {
+                for (
+                    const section of
+                    campaignData.sections || []
+                ) {
+
                     const result =
-                        renderSection(section, index);
+                        renderSection(
+                            section,
+                            index
+                        );
 
-                    container.appendChild(result.element);
+                    container.appendChild(
+                        result.element
+                    );
 
-                    index = result.nextIndex;
+                    index =
+                        result.nextIndex;
                 }
             }
 
+
+            /*
+             * Campaign ToC
+             */
+
             function renderToc() {
-                const container = $("toc");
+
+                const container =
+                    $("toc");
 
                 container.innerHTML = "";
 
@@ -916,139 +1702,223 @@
 
                 let index = 0;
 
-                for (const section of campaignData.sections || []) {
-                    const group =
-                        document.createElement("div");
+                for (
+                    const section of
+                    campaignData.sections || []
+                ) {
 
-                    group.className = "toc-section";
+                    const group =
+                        document.createElement(
+                            "div"
+                        );
+
+                    group.className =
+                        "toc-section";
 
                     const title =
-                        document.createElement("div");
+                        document.createElement(
+                            "div"
+                        );
 
-                    title.className = "toc-title";
-                    title.textContent = section.title;
+                    title.className =
+                        "toc-title";
 
-                    group.appendChild(title);
+                    title.textContent =
+                        section.title;
 
-                    for (const text of section.tasks || []) {
+                    group.appendChild(
+                        title
+                    );
+
+                    for (
+                        const text of
+                        section.tasks || []
+                    ) {
+
                         group.appendChild(
-                            createTocTask(text, index++)
+                            createTocTask(
+                                text,
+                                index++
+                            )
                         );
                     }
 
-                    for (const subsection of section.sections || []) {
-                        const subTitle =
-                            document.createElement("div");
+                    for (
+                        const subsection of
+                        section.sections || []
+                    ) {
 
-                        subTitle.className = "toc-title";
-                        subTitle.style.paddingLeft = "15px";
+                        const subTitle =
+                            document.createElement(
+                                "div"
+                            );
+
+                        subTitle.className =
+                            "toc-title";
+
+                        subTitle.style.paddingLeft =
+                            "15px";
+
                         subTitle.textContent =
                             subsection.title;
 
-                        group.appendChild(subTitle);
+                        group.appendChild(
+                            subTitle
+                        );
 
-                        for (const text of subsection.tasks || []) {
+                        for (
+                            const text of
+                            subsection.tasks || []
+                        ) {
+
                             group.appendChild(
-                                createTocTask(text, index++)
+                                createTocTask(
+                                    text,
+                                    index++
+                                )
                             );
                         }
                     }
 
-                    container.appendChild(group);
+                    container.appendChild(
+                        group
+                    );
                 }
             }
 
-            function createTocTask(text, index) {
-                const profile = activeProfile();
+
+            function createTocTask(
+                text,
+                index
+            ) {
+
+                const profile =
+                    activeProfile();
 
                 const button =
-                    document.createElement("button");
+                    document.createElement(
+                        "button"
+                    );
 
-                button.className = "toc-task";
+                button.type =
+                    "button";
 
-                if (profile?.currentTask === index) {
-                    button.classList.add("current");
+                button.className =
+                    "toc-task";
+
+                if (
+                    profile?.currentTask ===
+                    index
+                ) {
+
+                    button.classList.add(
+                        "current"
+                    );
                 }
 
-                if (profile && index < profile.currentTask) {
-                    button.classList.add("done");
+                if (
+                    profile &&
+                    index <
+                    profile.currentTask
+                ) {
+
+                    button.classList.add(
+                        "done"
+                    );
                 }
 
                 const checkbox =
-                    document.createElement("input");
+                    document.createElement(
+                        "input"
+                    );
 
-                checkbox.type = "checkbox";
-                checkbox.className = "toc-check";
+                checkbox.type =
+                    "checkbox";
+
+                checkbox.className =
+                    "toc-check";
+
                 checkbox.checked =
                     !!profile &&
-                    index < profile.currentTask;
-                checkbox.disabled = true;
+                    index <
+                    profile.currentTask;
+
+                checkbox.disabled =
+                    true;
 
                 const label =
-                    document.createElement("span");
+                    document.createElement(
+                        "span"
+                    );
 
-                label.className = "toc-label";
-                label.textContent = text;
+                label.className =
+                    "toc-label";
 
-                button.append(checkbox, label);
+                label.textContent =
+                    text;
 
-                button.addEventListener("click", () => {
-                    closeSheet();
-                    setCurrentTask(index);
-                });
+                button.append(
+                    checkbox,
+                    label
+                );
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        closeSheet();
+
+                        setCurrentTask(
+                            index
+                        );
+                    }
+                );
 
                 return button;
             }
 
-            function renderProgress() {
-                const completed =
-                    Math.min(
-                        activeProfile()?.currentTask || 0,
-                        tasks.length
-                    );
 
-                const percent =
-                    tasks.length
-                        ? Math.round(
-                            completed / tasks.length * 100
-                        )
-                        : 0;
-
-                $("progressText").textContent =
-                    `${completed} / ${tasks.length}`;
-
-                $("progressPercent").textContent =
-                    `${percent}%`;
-
-                $("progressFill").style.width =
-                    `${percent}%`;
-            }
-
-            function render() {
-                refreshTasks();
-                renderProfiles();
-                renderProgress();
-                renderScrollBar();
-                renderCampaign();
-            }
+            /*
+             * Campaign sheets
+             */
 
             function openSheet() {
-                $("sheet").classList.add("open");
-                $("sheetBackdrop").classList.add("open");
+
+                $("sheet")
+                    .classList.add("open");
+
+                $("sheetBackdrop")
+                    .classList.add("open");
+
                 renderToc();
             }
 
+
             function closeSheet() {
-                $("sheet").classList.remove("open");
-                $("sheetBackdrop").classList.remove("open");
+
+                $("sheet")
+                    .classList.remove("open");
+
+                $("sheetBackdrop")
+                    .classList.remove("open");
             }
 
+
+            /*
+             * Campaign file loading
+             */
+
             async function loadCampaign() {
+
                 try {
+
                     const response =
-                        await fetch("data/acts.json");
+                        await fetch(
+                            "data/acts.json"
+                        );
 
                     if (!response.ok) {
+
                         throw new Error(
                             `HTTP ${response.status}`
                         );
@@ -1057,14 +1927,19 @@
                     const data =
                         await response.json();
 
-                    validateCampaignData(data);
+                    validateCampaignData(
+                        data
+                    );
 
-                    campaignData = data;
+                    campaignData =
+                        data;
 
                     render();
+
                 } catch (error) {
+
                     console.info(
-                        "Automatic JSON loading failed.",
+                        "Automatic campaign JSON loading failed.",
                         error
                     );
 
@@ -1072,17 +1947,29 @@
                 }
             }
 
-            async function loadJsonFile(file) {
+
+            async function loadJsonFile(
+                file
+            ) {
+
                 try {
+
                     const data =
-                        JSON.parse(await file.text());
+                        JSON.parse(
+                            await file.text()
+                        );
 
-                    validateCampaignData(data);
+                    validateCampaignData(
+                        data
+                    );
 
-                    campaignData = data;
+                    campaignData =
+                        data;
 
                     render();
+
                 } catch (error) {
+
                     alert(
                         "Could not load campaign JSON:\n\n" +
                         error.message
@@ -1090,18 +1977,33 @@
                 }
             }
 
-            function validateCampaignData(data) {
+
+            function validateCampaignData(
+                data
+            ) {
+
                 if (
                     !data ||
-                    !Array.isArray(data.sections)
+                    !Array.isArray(
+                        data.sections
+                    )
                 ) {
+
                     throw new Error(
                         "Invalid acts.json: expected a sections array."
                     );
                 }
 
-                for (const section of data.sections) {
-                    if (typeof section.title !== "string") {
+                for (
+                    const section of
+                    data.sections
+                ) {
+
+                    if (
+                        typeof section.title !==
+                        "string"
+                    ) {
+
                         throw new Error(
                             "Invalid section: missing title."
                         );
@@ -1109,8 +2011,11 @@
 
                     if (
                         section.tasks &&
-                        !Array.isArray(section.tasks)
+                        !Array.isArray(
+                            section.tasks
+                        )
                     ) {
+
                         throw new Error(
                             `Invalid tasks array in ${section.title}.`
                         );
@@ -1118,8 +2023,11 @@
 
                     if (
                         section.sections &&
-                        !Array.isArray(section.sections)
+                        !Array.isArray(
+                            section.sections
+                        )
                     ) {
+
                         throw new Error(
                             `Invalid subsection array in ${section.title}.`
                         );
@@ -1127,245 +2035,589 @@
                 }
             }
 
+
+            /*
+             * Main rendering
+             */
+
+            function render() {
+
+                refreshTasks();
+
+                renderProfiles();
+
+                renderProgress();
+
+                renderScrollBar();
+
+                renderCampaign();
+            }
+
+
+            /*
+             * Event handlers
+             */
+
             $("addProfile")
-                .addEventListener("click", addProfile);
+                .addEventListener(
+                    "click",
+                    addProfile
+                );
+
 
             $("profileName")
-                .addEventListener("keydown", event => {
-                    if (event.key === "Enter") {
-                        addProfile();
+                .addEventListener(
+                    "keydown",
+                    event => {
+
+                        if (event.key === "Enter") {
+                            addProfile();
+                        }
                     }
-                });
+                );
+
 
             $("profileSelect")
-                .addEventListener("change", event => {
-                    state.activeProfile =
-                        Number(event.target.value);
+                .addEventListener(
+                    "change",
+                    event => {
 
-                    saveState();
-                    render();
-                });
+                        const index =
+                            Number(
+                                event.target.value
+                            );
+
+                        if (
+                            !Number.isInteger(
+                                index
+                            ) ||
+                            !state.profiles[index]
+                        ) {
+                            return;
+                        }
+
+                        state.activeProfile =
+                            index;
+
+                        saveState();
+                        render();
+
+                        scrollToCurrentTask(
+                            true
+                        );
+                    }
+                );
+
 
             $("deleteProfile")
-                .addEventListener("click", deleteProfile);
+                .addEventListener(
+                    "click",
+                    deleteProfile
+                );
+
 
             $("exportProfiles")
-                .addEventListener("click", exportProfiles);
+                .addEventListener(
+                    "click",
+                    exportProfiles
+                );
+
 
             $("importProfiles")
-                .addEventListener("click", () => {
-                    $("profilesUpload").click();
-                });
+                .addEventListener(
+                    "click",
+                    () => {
+                        $("profilesUpload").click();
+                    }
+                );
+
 
             $("profilesUpload")
-                .addEventListener("change", event => {
-                    const file = event.target.files[0];
+                .addEventListener(
+                    "change",
+                    event => {
 
-                    if (file) {
-                        importProfiles(file);
+                        const file =
+                            event.target.files[0];
+
+                        if (file) {
+                            importProfiles(file);
+                        }
+
+                        event.target.value = "";
                     }
+                );
 
-                    event.target.value = "";
-                });
 
             $("deleteAllProfiles")
-                .addEventListener("click", deleteAllProfiles);
+                .addEventListener(
+                    "click",
+                    deleteAllProfiles
+                );
+
 
             $("tocButton")
-                .addEventListener("click", openSheet);
+                .addEventListener(
+                    "click",
+                    openSheet
+                );
 
-            $("closeSheet")
-                .addEventListener("click", closeSheet);
-
-            $("sheetBackdrop")
-                .addEventListener("click", closeSheet);
-
-            $("uploadButton")
-                .addEventListener("click", () => {
-                    $("jsonUpload").click();
-                });
-
-            $("jsonUpload")
-                .addEventListener("change", event => {
-                    const file = event.target.files[0];
-
-                    if (file) {
-                        loadJsonFile(file);
-                    }
-                });
-
-            window.addEventListener("scroll", updateScrollBar, {
-                passive: true
-            });
 
             $("scrollTocButton")
-                .addEventListener("click", openSheet);
+                .addEventListener(
+                    "click",
+                    openSheet
+                );
+
+
+            $("closeSheet")
+                .addEventListener(
+                    "click",
+                    closeSheet
+                );
+
+
+            $("sheetBackdrop")
+                .addEventListener(
+                    "click",
+                    closeSheet
+                );
+
+
+            $("uploadButton")
+                .addEventListener(
+                    "click",
+                    () => {
+                        $("jsonUpload").click();
+                    }
+                );
+
+
+            $("jsonUpload")
+                .addEventListener(
+                    "change",
+                    event => {
+
+                        const file =
+                            event.target.files[0];
+
+                        if (file) {
+                            loadJsonFile(file);
+                        }
+
+                        event.target.value = "";
+                    }
+                );
+
+
+            window.addEventListener(
+                "scroll",
+                updateScrollBar,
+                {
+                    passive: true
+                }
+            );
+
 
             render();
+
             loadCampaign();
+
         })();
 
-        /* SSF Reference */
+
+        /*
+         * ------------------------------------------------------------
+         * SSF Reference
+         * ------------------------------------------------------------
+         */
+
         (() => {
-            let data = [];
 
-            const content = $("ssfContent");
-            const search = $("search");
-            const clearSearch = $("clearSearch");
-            const searchInfo = $("searchInfo");
-            const empty = $("ssfEmpty");
+            let sections = [];
 
-            function highlight(text, query) {
-                const safe = escapeHtml(text);
+            const content =
+                $("ssfContent");
 
-                if (!query) {
-                    return safe;
-                }
+            const empty =
+                $("ssfEmpty");
 
-                const escapedQuery =
-                    query.replace(
-                        /[.*+?^${}()|[\]\\]/g,
-                        "\\$&"
-                    );
+            const search =
+                $("ssfSearch");
 
-                return safe.replace(
-                    new RegExp(
-                        `(${escapedQuery})`,
-                        "ig"
-                    ),
-                    "<mark>$1</mark>"
+            const clearSearch =
+                $("clearSsfSearch");
+
+            const searchInfo =
+                $("ssfSearchInfo");
+
+            function escapeRegExp(value) {
+                return value.replace(
+                    /[.*+?^${}()|[\]\\]/g,
+                    "\\$&"
                 );
             }
 
-            function renderBody(items, query = "") {
-                return `
-            <ul>
-                ${items.map(item => `
-                    <li>${highlight(item, query)}</li>
-                `).join("")}
-            </ul>
-        `;
+
+            function highlightText(text, query) {
+
+                if (!query) {
+                    return escapeHtml(text);
+                }
+
+                const regex =
+                    new RegExp(
+                        `(${escapeRegExp(query)})`,
+                        "gi"
+                    );
+
+                return escapeHtml(text)
+                    .replace(
+                        regex,
+                        "<mark>$1</mark>"
+                    );
             }
 
-            function render() {
-                content.innerHTML =
-                    data.map(section => `
-                <section class="ref-section">
-                    <div class="ref-section-title">
-                        ${escapeHtml(section.section)}
-                    </div>
-
-                    ${section.entries.map((entry, index) => `
-                        <article
-                            class="entry"
-                            data-section="${escapeHtml(section.section)}"
-                            data-index="${index}"
-                        >
-                            <button
-                                class="entry-header"
-                                type="button"
-                            >
-                                <span class="arrow">▶</span>
-                                <span class="entry-title">
-                                    ${escapeHtml(entry.title)}
-                                </span>
-                                <span class="entry-count">
-                                    ${entry.items.length}
-                                </span>
-                            </button>
-
-                            <div class="entry-body">
-                                ${renderBody(entry.items)}
-                            </div>
-                        </article>
-                    `).join("")}
-                </section>
-            `).join("");
-
-                content
-                    .querySelectorAll(".entry-header")
-                    .forEach(button => {
-                        button.addEventListener("click", () => {
-                            button
-                                .closest(".entry")
-                                .classList
-                                .toggle("open");
-                        });
-                    });
-            }
 
             function searchEntries() {
+
                 const query =
                     search.value.trim().toLowerCase();
 
-                clearSearch.style.display =
-                    query ? "block" : "none";
-
-                const entries =
-                    [...content.querySelectorAll(".entry")];
+                const articles =
+                    content.querySelectorAll(".entry");
 
                 let matches = 0;
 
-                entries.forEach(entry => {
-                    const section =
-                        data.find(
-                            section =>
-                                section.section ===
-                                entry.dataset.section
-                        );
+                articles.forEach(article => {
 
-                    const item =
-                        section.entries[
-                        Number(entry.dataset.index)
-                        ];
+                    const title =
+                        article.dataset.title || "";
 
-                    const haystack = [
-                        item.title,
-                        ...item.items
-                    ]
-                        .join(" ")
-                        .toLowerCase();
+                    const text =
+                        article.dataset.text || "";
 
                     const matched =
                         !query ||
-                        haystack.includes(query);
+                        title.includes(query) ||
+                        text.includes(query);
 
-                    entry.classList.toggle(
-                        "hidden",
-                        !matched
-                    );
+                    article.style.display =
+                        matched ? "" : "none";
 
-                    entry.classList.toggle(
+                    if (matched && query) {
+                        matches++;
+                    }
+
+                    /*
+                     * Expand all matching entries while searching.
+                     * Collapse them again when the search is cleared.
+                     */
+                    article.classList.toggle(
                         "open",
                         !!query && matched
                     );
 
-                    const title =
-                        entry.querySelector(".entry-title");
+                    const titleElement =
+                        article.querySelector(".entry-title");
 
-                    title.innerHTML =
-                        highlight(item.title, query);
+                    if (titleElement) {
+
+                        titleElement.innerHTML =
+                            highlightText(
+                                article.dataset.originalTitle,
+                                query
+                            );
+                    }
 
                     const body =
-                        entry.querySelector(".entry-body");
+                        article.querySelector(".entry-body");
 
-                    body.innerHTML =
-                        renderBody(item.items, query);
+                    if (body) {
 
-                    if (matched && query) {
-                        matches++;
+                        const originalItems =
+                            JSON.parse(
+                                article.dataset.items
+                            );
+
+                        const items =
+                            body.querySelectorAll("li");
+
+                        items.forEach(
+                            (item, index) => {
+
+                                item.innerHTML =
+                                    highlightText(
+                                        originalItems[index],
+                                        query
+                                    );
+                            }
+                        );
                     }
                 });
 
                 searchInfo.textContent =
                     query
-                        ? `${matches} ${matches === 1 ? "entry" : "entries"} matched`
+                        ? `${matches} result${matches === 1 ? "" : "s"}`
                         : "";
+            }
+
+            function showEmpty(
+                message
+            ) {
+
+                empty.textContent =
+                    message;
 
                 empty.style.display =
-                    query && matches === 0
-                        ? "block"
-                        : "none";
+                    "block";
+            }
+
+
+            function hideEmpty() {
+
+                empty.style.display =
+                    "none";
+            }
+
+
+            function validateSSFData(
+                data
+            ) {
+
+                if (
+                    !data ||
+                    !Array.isArray(
+                        data.sections
+                    )
+                ) {
+
+                    throw new Error(
+                        "Invalid ssfref.json: expected a sections array."
+                    );
+                }
+
+                for (
+                    const section of
+                    data.sections
+                ) {
+
+                    if (
+                        typeof section.section !==
+                        "string"
+                    ) {
+
+                        throw new Error(
+                            "Invalid SSF section: missing section name."
+                        );
+                    }
+
+                    if (
+                        !Array.isArray(
+                            section.entries
+                        )
+                    ) {
+
+                        throw new Error(
+                            `Invalid entries array in ${section.section}.`
+                        );
+                    }
+
+                    for (
+                        const entry of
+                        section.entries
+                    ) {
+
+                        if (
+                            !entry ||
+                            typeof entry.title !==
+                            "string"
+                        ) {
+
+                            throw new Error(
+                                `Invalid SSF entry in ${section.section}.`
+                            );
+                        }
+
+                        if (
+                            !Array.isArray(
+                                entry.items
+                            )
+                        ) {
+
+                            throw new Error(
+                                `Invalid items array in "${entry.title}".`
+                            );
+                        }
+                    }
+                }
+            }
+
+
+            function renderItems(items) {
+
+                const query =
+                    search.value.trim();
+
+                if (!items.length) {
+                    return "";
+                }
+
+                return `
+        <ul>
+            ${items
+                        .map(
+                            item =>
+                                `<li>${highlightText(item, query)}</li>`
+                        )
+                        .join("")}
+        </ul>
+    `;
+            }
+
+
+            function render() {
+
+                content.innerHTML = "";
+
+                if (!sections.length) {
+
+                    showEmpty(
+                        "No SSF reference data loaded."
+                    );
+
+                    return;
+                }
+
+                hideEmpty();
+
+                for (
+                    const section of
+                    sections
+                ) {
+
+                    const sectionElement =
+                        document.createElement(
+                            "section"
+                        );
+
+                    sectionElement.className =
+                        "ref-section";
+
+
+                    const sectionTitle =
+                        document.createElement(
+                            "div"
+                        );
+
+                    sectionTitle.className =
+                        "ref-section-title";
+
+                    sectionTitle.textContent =
+                        section.section;
+
+
+                    sectionElement.appendChild(
+                        sectionTitle
+                    );
+
+
+                    for (
+                        const entry of
+                        section.entries
+                    ) {
+
+                        const article =
+                            document.createElement(
+                                "article"
+                            );
+
+                        article.className =
+                            "entry";
+
+                        const searchableText =
+                            [
+                                entry.title,
+                                ...entry.items
+                            ].join(" ");
+
+                        article.dataset.title =
+                            entry.title.toLowerCase();
+
+                        article.dataset.text =
+                            searchableText.toLowerCase();
+
+                        article.dataset.originalTitle =
+                            entry.title;
+
+                        article.dataset.items =
+                            JSON.stringify(entry.items);
+
+                        const header =
+                            document.createElement(
+                                "button"
+                            );
+
+                        header.type =
+                            "button";
+
+                        header.className =
+                            "entry-header";
+
+                        header.innerHTML = `
+    <span class="arrow">▶</span>
+    <span class="entry-title">
+        ${escapeHtml(entry.title)}
+    </span>
+    <span class="entry-count">
+        ${entry.items.length}
+    </span>
+`;
+
+
+                        const body =
+                            document.createElement(
+                                "div"
+                            );
+
+                        body.className =
+                            "entry-body";
+
+                        body.innerHTML =
+                            renderItems(
+                                entry.items,
+                                search.value.trim()
+                            );
+
+
+                        header.addEventListener(
+                            "click",
+                            () => {
+
+                                article.classList.toggle(
+                                    "open"
+                                );
+                            }
+                        );
+
+
+                        article.append(
+                            header,
+                            body
+                        );
+
+                        sectionElement.appendChild(
+                            article
+                        );
+                    }
+
+
+                    content.appendChild(
+                        sectionElement
+                    );
+                }
+
+                searchEntries();
             }
 
             search.addEventListener(
@@ -1373,33 +2625,188 @@
                 searchEntries
             );
 
-            clearSearch.addEventListener("click", () => {
-                search.value = "";
-                searchEntries();
-                search.focus();
-            });
 
-            fetch("data/ssfref.json")
-                .then(response => {
+            clearSearch.addEventListener(
+                "click",
+                () => {
+
+                    search.value = "";
+
+                    searchEntries();
+
+                    search.focus();
+                }
+            );
+
+            async function loadSSF() {
+
+                try {
+
+                    const response =
+                        await fetch(
+                            "data/ssfref.json"
+                        );
+
                     if (!response.ok) {
+
                         throw new Error(
                             `HTTP ${response.status}`
                         );
                     }
 
-                    return response.json();
-                })
-                .then(json => {
-                    data = json.sections || [];
+                    const data =
+                        await response.json();
+
+                    validateSSFData(
+                        data
+                    );
+
+                    sections =
+                        data.sections;
+
                     render();
-                })
-                .catch(error => {
-                    console.error(error);
-                    empty.textContent =
-                        "Could not load data/ssfref.json.";
-                    empty.style.display = "block";
-                });
+
+                    console.info(
+                        "Loaded data/ssfref.json"
+                    );
+
+                } catch (error) {
+
+                    console.info(
+                        "Automatic SSF JSON loading failed.",
+                        error
+                    );
+
+                    showEmpty(
+                        "Could not load data/ssfref.json. Use Load JSON to select the file manually."
+                    );
+                }
+            }
+
+
+            async function loadSSFFile(
+                file
+            ) {
+
+                try {
+
+                    const data =
+                        JSON.parse(
+                            await file.text()
+                        );
+
+                    validateSSFData(
+                        data
+                    );
+
+                    sections =
+                        data.sections;
+
+                    render();
+
+                } catch (error) {
+
+                    alert(
+                        "Could not load SSF JSON:\n\n" +
+                        error.message
+                    );
+                }
+            }
+
+
+            /*
+             * SSF sheet
+             */
+
+            function openSSF() {
+
+                $("ssfSheet")
+                    .classList.add("open");
+
+                $("ssfBackdrop")
+                    .classList.add("open");
+            }
+
+
+            function closeSSF() {
+
+                $("ssfSheet")
+                    .classList.remove("open");
+
+                $("ssfBackdrop")
+                    .classList.remove("open");
+            }
+
+
+            /*
+             * Events
+             */
+
+            $("ssfButton")
+                .addEventListener(
+                    "click",
+                    openSSF
+                );
+
+
+            $("scrollSsfButton")
+                .addEventListener(
+                    "click",
+                    openSSF
+                );
+
+
+            $("closeSsf")
+                .addEventListener(
+                    "click",
+                    closeSSF
+                );
+
+
+            $("ssfBackdrop")
+                .addEventListener(
+                    "click",
+                    closeSSF
+                );
+
+
+            $("loadSsfButton")
+                .addEventListener(
+                    "click",
+                    () => {
+                        $("ssfUpload").click();
+                    }
+                );
+
+
+            $("ssfUpload")
+                .addEventListener(
+                    "change",
+                    event => {
+
+                        const file =
+                            event.target.files[0];
+
+                        if (file) {
+                            loadSSFFile(file);
+                        }
+
+                        event.target.value = "";
+                    }
+                );
+
+
+            /*
+             * Load the default SSF file automatically.
+             *
+             * If GitHub Pages cannot fetch it, the sheet remains
+             * usable and the user can select ssfref.json manually.
+             */
+
+            loadSSF();
+
         })();
+
     </script>
 
 </body>
