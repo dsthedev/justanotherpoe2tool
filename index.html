@@ -595,14 +595,27 @@
                 render();
             }
 
-
             function exportProfiles() {
 
                 const exportData = {
                     version: 1,
                     exportedAt:
                         new Date().toISOString(),
-                    profiles: state.profiles,
+
+                    profiles:
+                        state.profiles.map(
+                            profile => ({
+                                name:
+                                    profile.name,
+
+                                currentTask:
+                                    profile.currentTask,
+
+                                notes:
+                                    profile.notes || {}
+                            })
+                        ),
+
                     activeProfile:
                         state.activeProfile
                 };
@@ -632,11 +645,14 @@
                 link.download =
                     "poe2-characters.json";
 
+                document.body.appendChild(link);
+
                 link.click();
+
+                link.remove();
 
                 URL.revokeObjectURL(url);
             }
-
 
             async function importProfiles(file) {
 
@@ -649,9 +665,7 @@
 
                     if (
                         !imported ||
-                        !Array.isArray(
-                            imported.profiles
-                        )
+                        !Array.isArray(imported.profiles)
                     ) {
 
                         throw new Error(
@@ -659,22 +673,45 @@
                         );
                     }
 
-                    if (
-                        !imported.profiles.every(
-                            profile =>
-                                profile &&
-                                typeof profile.name ===
-                                "string" &&
-                                Number.isInteger(
-                                    profile.currentTask
-                                )
-                        )
-                    ) {
+                    const profiles =
+                        imported.profiles.map(
+                            profile => {
 
-                        throw new Error(
-                            "Invalid character data."
+                                if (
+                                    !profile ||
+                                    typeof profile.name !== "string" ||
+                                    !profile.name.trim()
+                                ) {
+
+                                    throw new Error(
+                                        "Invalid character data: every character needs a name."
+                                    );
+                                }
+
+                                return {
+                                    name: profile.name.trim(),
+
+                                    currentTask:
+                                        Number.isInteger(
+                                            profile.currentTask
+                                        )
+                                            ? Math.max(
+                                                0,
+                                                Math.min(
+                                                    profile.currentTask,
+                                                    tasks.length
+                                                )
+                                            )
+                                            : 0,
+
+                                    notes:
+                                        profile.notes &&
+                                            typeof profile.notes === "object"
+                                            ? profile.notes
+                                            : {}
+                                };
+                            }
                         );
-                    }
 
                     if (
                         !confirm(
@@ -685,24 +722,36 @@
                     }
 
                     state.profiles =
-                        imported.profiles;
+                        profiles;
 
                     state.activeProfile =
                         Number.isInteger(
                             imported.activeProfile
-                        ) &&
-                            imported.activeProfile >= 0 &&
-                            imported.activeProfile <
-                            state.profiles.length
-                            ? imported.activeProfile
+                        )
+                            ? Math.max(
+                                0,
+                                Math.min(
+                                    imported.activeProfile,
+                                    Math.max(
+                                        0,
+                                        profiles.length - 1
+                                    )
+                                )
+                            )
                             : 0;
 
                     saveState();
+
                     render();
 
                     scrollToCurrentTask(false);
 
                 } catch (error) {
+
+                    console.error(
+                        "Profile import failed:",
+                        error
+                    );
 
                     alert(
                         "Could not import characters:\n\n" +
@@ -710,7 +759,6 @@
                     );
                 }
             }
-
 
             /*
              * Current task
@@ -1908,18 +1956,16 @@
             /*
              * Campaign file loading
              */
-
             async function loadCampaign() {
 
                 try {
 
                     const response =
                         await fetch(
-                            "data/acts.json"
+                            "https://raw.githubusercontent.com/dsthedev/justanotherpoe2tool/main/data/acts.json"
                         );
 
                     if (!response.ok) {
-
                         throw new Error(
                             `HTTP ${response.status}`
                         );
@@ -1928,26 +1974,22 @@
                     const data =
                         await response.json();
 
-                    validateCampaignData(
-                        data
-                    );
+                    validateCampaignData(data);
 
-                    campaignData =
-                        data;
+                    campaignData = data;
 
                     render();
 
                 } catch (error) {
 
-                    console.info(
-                        "Automatic campaign JSON loading failed.",
+                    console.error(
+                        "Could not load campaign data from GitHub:",
                         error
                     );
 
                     render();
                 }
             }
-
 
             async function loadJsonFile(
                 file
@@ -2645,11 +2687,10 @@
 
                     const response =
                         await fetch(
-                            "data/ssfref.json"
+                            "https://raw.githubusercontent.com/dsthedev/justanotherpoe2tool/main/data/ssfref.json"
                         );
 
                     if (!response.ok) {
-
                         throw new Error(
                             `HTTP ${response.status}`
                         );
@@ -2658,9 +2699,7 @@
                     const data =
                         await response.json();
 
-                    validateSSFData(
-                        data
-                    );
+                    validateSSFData(data);
 
                     sections =
                         data.sections;
@@ -2668,22 +2707,21 @@
                     render();
 
                     console.info(
-                        "Loaded data/ssfref.json"
+                        "Loaded SSF reference from GitHub."
                     );
 
                 } catch (error) {
 
-                    console.info(
-                        "Automatic SSF JSON loading failed.",
+                    console.error(
+                        "Could not load SSF reference from GitHub:",
                         error
                     );
 
                     showEmpty(
-                        "Could not load data/ssfref.json. Use Load JSON to select the file manually."
+                        "Could not load the GitHub SSF reference. Use Load JSON to select a custom file."
                     );
                 }
             }
-
 
             async function loadSSFFile(
                 file
