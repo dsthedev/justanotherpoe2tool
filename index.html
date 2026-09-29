@@ -19,32 +19,51 @@
 
         <section id="rush" class="view active">
             <header class="header">
-                <div class="header-row">
-                    <div class="title">
-                        <h1>Rush to Maps</h1>
-                        <small>PoE2 campaign progress</small>
+                <div class="header-main">
+                    <div class="header-row">
+                        <div class="title">
+                            <h1>Rush to Maps</h1>
+                            <small>PoE2 campaign progress</small>
+                        </div>
+                        <button class="btn" id="tocButton">ToC</button>
                     </div>
-                    <button class="btn" id="tocButton">ToC</button>
+
+                    <div class="profile-row">
+                        <select id="profileSelect"></select>
+                    </div>
+
+                    <div class="character-actions">
+                        <input id="profileName" class="profile-input" type="text" placeholder="New character">
+                        <button class="btn btn-primary" id="addProfile">Add</button>
+                        <button class="btn" id="exportProfiles" type="button">Export</button>
+                        <button class="btn" id="importProfiles" type="button">Import</button>
+                        <button class="btn btn-danger" id="deleteAllProfiles" type="button">Delete All</button>
+                        <button class="btn btn-danger" id="deleteProfile" title="Delete current character"
+                            type="button">Delete Character</button>
+                    </div>
+
+                    <div class="progress">
+                        <div class="progress-meta">
+                            <span id="progressText">0 / 0</span>
+                            <span id="progressPercent">0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="profile-row">
-                    <select id="profileSelect"></select>
-                    <input id="profileName" class="profile-input" type="text" placeholder="New character">
-                    <button class="btn btn-primary" id="addProfile">Add</button>
-                    <button class="btn btn-danger" id="deleteProfile" title="Delete character">×</button>
-                    <button class="btn" id="exportProfiles">Export</button>
-                    <button class="btn" id="importProfiles">Import</button>
-                    <button class="btn btn-danger" id="deleteAllProfiles">Delete All</button>
-                </div>
+                <div class="scroll-bar" id="scrollBar">
+                    <strong id="scrollCharacter">No character</strong>
 
-                <div class="progress">
-                    <div class="progress-meta">
-                        <span id="progressText">0 / 0</span>
-                        <span id="progressPercent">0%</span>
+                    <div class="scroll-progress">
+                        <span id="scrollProgress">0 / 0</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="scrollProgressFill"></div>
+                        </div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
-                    </div>
+
+                    <button class="btn" id="scrollTocButton">ToC</button>
                 </div>
             </header>
 
